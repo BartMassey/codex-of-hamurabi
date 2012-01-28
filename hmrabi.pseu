@@ -1,0 +1,13 @@
+To run hmrabi with purch and feed:
+  -- Update population
+  pop <- pop + imm
+  if 15% chance
+    plagued <- ceil(pop / 2)
+    pop <- floor(pop / 2)
+  -- Update land
+  lprice <- randint(10) + 17
+  lbushels <- lprice * purch
+  assert acreage >= -purch land lbushels <= stored
+  acreage += purch
+  stored -= lbushels
+  --   
