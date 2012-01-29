@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Skein rootNode="node-0xb34178e8" xmlns="http://www.logicalshift.org.uk/IF/Skein">
   <generator>GNOME Inform 7</generator>
-  <activeNode nodeId="node-0xb34178e8"/>
+  <activeNode nodeId="node-0xa6629390"/>
   <item nodeId="node-0xb34178e8">
     <command xml:space="preserve">- start -</command>
     <result xml:space="preserve">
 
 
 
-Govern ancient Sumer for 10 short years...
+Govern ancient Sumer for 10 years...
 
 The Codex of Hamurabi
 A socioeconomic simulation by Bart Massey
@@ -18,7 +18,7 @@ Copyright © 2012 Bart Massey; based on David Ahl&apos;s famous 1978 BASIC game 
 Throne Room (on The Throne of Hamurabi)
 Stone splendor stretches upward around your throne in this vast and echoing hall. Soft linen carpets, rich wood furniture, and gold accessories and ornaments adorn the richly tiled stone floor. Warm natural sunlight filters in through various high windows, contrasting pleasantly with the dim, cool surroundings.
 
-Your humble Steward awaits your commands with quiet dignity.
+Your Steward awaits your commands with quiet dignity.
 
 &gt;</result>
     <commentary xml:space="preserve"></commentary>
@@ -49,16 +49,17 @@ Your humble Steward awaits your commands with quiet dignity.
   </item>
   <item nodeId="node-0xb34179c0">
     <command xml:space="preserve">x me</command>
-    <result xml:space="preserve">You consider your stature, your grace and your excellence. You consider your garments: a linen skirt, chestplate, golden sandals and an ornate crown. You are clearly a destined ruler.
+    <result xml:space="preserve">You consider your stature, your grace and your excellence. You consider your garments: the linen skirt, chestplate, golden sandals and the ornate crown. You, Hamurabi, are clearly a destined ruler.
 
 &gt;</result>
     <commentary xml:space="preserve"></commentary>
-    <played>NO</played>
+    <played>YES</played>
     <changed>YES</changed>
     <temporary score="0">YES</temporary>
     <annotation xml:space="preserve"></annotation>
     <children>
       <child nodeId="node-0xb3417a98"/>
+      <child nodeId="node-0xa440d38"/>
     </children>
   </item>
   <item nodeId="node-0xb3417a98">
@@ -66,9 +67,151 @@ Your humble Steward awaits your commands with quiet dignity.
     <result xml:space="preserve">You are carrying:
   a linen skirt (being worn)
   chestplate (being worn)
-  leather sandals (being worn)
+  golden sandals (being worn)
   an ornate crown (being worn)
-  the Rod of Hamurabi
+  The Rod of Hamurabi
+
+&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <annotation xml:space="preserve"></annotation>
+    <children>
+      <child nodeId="node-0xb3417b70"/>
+      <child nodeId="node-0xa6606e00"/>
+    </children>
+  </item>
+  <item nodeId="node-0xb3417b70">
+    <command xml:space="preserve">x skirt</command>
+    <result xml:space="preserve">This is a simple linen garment, but the weave is incredibly fine and the needlework is impeccable. A stylish gold clasp closes the garment at the waist. Understated, but fit for a king.
+
+&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>NO</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <annotation xml:space="preserve"></annotation>
+  </item>
+  <item nodeId="node-0xa6606e00">
+    <command xml:space="preserve">remove skirt. remove chestplate. remove sandals. remove crown.</command>
+    <result xml:space="preserve">You take off the linen skirt.
+
+You take off chestplate.
+
+(golden sandals)
+You take off golden sandals.
+
+You take off the ornate crown.
+
+&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <annotation xml:space="preserve"></annotation>
+    <children>
+      <child nodeId="node-0xa6606ed8"/>
+    </children>
+  </item>
+  <item nodeId="node-0xa6606ed8">
+    <command xml:space="preserve">x me</command>
+    <result xml:space="preserve">You consider your stature, your grace and your excellence. You consider your magnificent unclothed form. You, Hamurabi, are clearly a destined ruler.
+
+&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <annotation xml:space="preserve"></annotation>
+    <children>
+      <child nodeId="node-0xa6629030"/>
+    </children>
+  </item>
+  <item nodeId="node-0xa6629030">
+    <command xml:space="preserve">take all</command>
+    <result xml:space="preserve">The Staff of Stewardship: That seems to belong to the Steward.
+The Annual Journal: That seems to belong to the Steward.
+iron stylus: That seems to belong to the Steward.
+
+&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <annotation xml:space="preserve"></annotation>
+    <children>
+      <child nodeId="node-0xa6629108"/>
+    </children>
+  </item>
+  <item nodeId="node-0xa6629108">
+    <command xml:space="preserve">i</command>
+    <result xml:space="preserve">You are carrying:
+  a linen skirt
+  chestplate
+  golden sandals
+  an ornate crown
+  The Rod of Hamurabi
+
+&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <annotation xml:space="preserve"></annotation>
+    <children>
+      <child nodeId="node-0xa66291e0"/>
+    </children>
+  </item>
+  <item nodeId="node-0xa66291e0">
+    <command xml:space="preserve">wear all</command>
+    <result xml:space="preserve">You can&apos;t use multiple objects with that verb.
+
+&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <annotation xml:space="preserve"></annotation>
+    <children>
+      <child nodeId="node-0xa66292b8"/>
+    </children>
+  </item>
+  <item nodeId="node-0xa66292b8">
+    <command xml:space="preserve">wear skirt. wear chestplate. wear sandals. wear crown</command>
+    <result xml:space="preserve">You put on the linen skirt.
+
+You put on chestplate.
+
+(golden sandals)
+You put on golden sandals.
+
+You put on the ornate crown.
+
+&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <annotation xml:space="preserve"></annotation>
+    <children>
+      <child nodeId="node-0xa6629390"/>
+    </children>
+  </item>
+  <item nodeId="node-0xa6629390">
+    <command xml:space="preserve">touch me</command>
+    <result xml:space="preserve">If you think that&apos;ll help.
+
+&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>YES</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <annotation xml:space="preserve"></annotation>
+  </item>
+  <item nodeId="node-0xa440d38">
+    <command xml:space="preserve">remove linen skirt</command>
+    <result xml:space="preserve">You take off the linen skirt.
 
 &gt;</result>
     <commentary xml:space="preserve"></commentary>
@@ -77,12 +220,125 @@ Your humble Steward awaits your commands with quiet dignity.
     <temporary score="0">YES</temporary>
     <annotation xml:space="preserve"></annotation>
     <children>
-      <child nodeId="node-0xb3417b70"/>
+      <child nodeId="node-0xa440e10"/>
     </children>
   </item>
-  <item nodeId="node-0xb3417b70">
-    <command xml:space="preserve">x skirt</command>
-    <result xml:space="preserve">This is a simple linen garment, but the weave is incredibly fine and the needlework is impeccable. A stylish gold clasp closes the garment at the waist. Understated, but fit for a king.
+  <item nodeId="node-0xa440e10">
+    <command xml:space="preserve">x me</command>
+    <result xml:space="preserve">You consider your stature, your grace and your excellence. You consider your garments: chestplate, golden sandals and the ornate crown. You, Hamurabi, are clearly a destined ruler.
+
+&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>NO</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <annotation xml:space="preserve"></annotation>
+    <children>
+      <child nodeId="node-0xa440ee8"/>
+    </children>
+  </item>
+  <item nodeId="node-0xa440ee8">
+    <command xml:space="preserve">remove chestplate, sandals and crown</command>
+    <result xml:space="preserve">You can&apos;t use multiple objects with that verb.
+
+&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>NO</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <annotation xml:space="preserve"></annotation>
+    <children>
+      <child nodeId="node-0xa6606818"/>
+    </children>
+  </item>
+  <item nodeId="node-0xa6606818">
+    <command xml:space="preserve">remove all</command>
+    <result xml:space="preserve">You can&apos;t use multiple objects with that verb.
+
+&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>NO</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <annotation xml:space="preserve"></annotation>
+    <children>
+      <child nodeId="node-0xa66068f0"/>
+    </children>
+  </item>
+  <item nodeId="node-0xa66068f0">
+    <command xml:space="preserve">remove chestplate; remove sandals; remove crown</command>
+    <result xml:space="preserve">I only understood you as far as wanting to remove chestplate.
+
+&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>NO</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <annotation xml:space="preserve"></annotation>
+    <children>
+      <child nodeId="node-0xa66069c8"/>
+    </children>
+  </item>
+  <item nodeId="node-0xa66069c8">
+    <command xml:space="preserve">remove chestplate, remove sandals, remove crown</command>
+    <result xml:space="preserve">You can&apos;t use multiple objects with that verb.
+
+&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>NO</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <annotation xml:space="preserve"></annotation>
+    <children>
+      <child nodeId="node-0xa6606aa0"/>
+    </children>
+  </item>
+  <item nodeId="node-0xa6606aa0">
+    <command xml:space="preserve">remove chestplate</command>
+    <result xml:space="preserve">You take off chestplate.
+
+&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>NO</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <annotation xml:space="preserve"></annotation>
+    <children>
+      <child nodeId="node-0xa6606b78"/>
+    </children>
+  </item>
+  <item nodeId="node-0xa6606b78">
+    <command xml:space="preserve">remove sandals</command>
+    <result xml:space="preserve">(golden sandals)
+You take off golden sandals.
+
+&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>NO</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <annotation xml:space="preserve"></annotation>
+    <children>
+      <child nodeId="node-0xa6606c50"/>
+    </children>
+  </item>
+  <item nodeId="node-0xa6606c50">
+    <command xml:space="preserve">remove crown</command>
+    <result xml:space="preserve">You take off the ornate crown.
+
+&gt;</result>
+    <commentary xml:space="preserve"></commentary>
+    <played>NO</played>
+    <changed>YES</changed>
+    <temporary score="0">YES</temporary>
+    <annotation xml:space="preserve"></annotation>
+    <children>
+      <child nodeId="node-0xa6606d28"/>
+    </children>
+  </item>
+  <item nodeId="node-0xa6606d28">
+    <command xml:space="preserve">x me</command>
+    <result xml:space="preserve">You consider your stature, your grace and your excellence. You consider your garments: . You, Hamurabi, are clearly a destined ruler.
 
 &gt;</result>
     <commentary xml:space="preserve"></commentary>

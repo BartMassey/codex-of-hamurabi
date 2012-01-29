@@ -608,7 +608,7 @@ Global turns = 1; ! = I7 "turn count"
 Global the_time = NULL; ! = I7 "time of day"
 Global time_rate = 1;
 
-Constant NUMBER_SCENES_CREATED = 1;
+Constant NUMBER_SCENES_CREATED = 4;
 Constant SCENE_ARRAY_SIZE = (NUMBER_SCENES_CREATED+2);
 Array scene_started --> SCENE_ARRAY_SIZE;
 Array scene_ended --> SCENE_ARRAY_SIZE;
@@ -8932,7 +8932,7 @@ Array valued_property_offsets --> valued_property_offsets_SIZE;
 ];
 
 
-Constant NUMBER_RULEBOOKS_CREATED = 365;
+Constant NUMBER_RULEBOOKS_CREATED = 371;
 Constant V0_printing_the_name_of_some = 0;
 Constant V1_printing_the_plural_name_ = 1;
 Constant V2_printing_a_number_of_some = 2;
@@ -8999,18 +8999,21 @@ Constant REL_BLOCK_HEADER ($100*6 + $$1101)*$10000;
 [ PrintSceneName value;
     switch(value) {
         I66_entire_game: print "Entire Game";
+        I123_fall: print "Fall";
+        I124_spring: print "Spring";
+        I125_winter: print "Winter";
         default: print "<illegal scene>";
     }
 ];
 
 [ A_PrintSceneName value;
-    return (value % 1)+1;
+    return (value % 4)+1;
 ];
 [ B_PrintSceneName value;
-    return ((value+-1) % 1)+1;
+    return ((value+2) % 4)+1;
 ];
 [ R_PrintSceneName a b;
-    if (a == 0 && b == 0) return (random(1));
+    if (a == 0 && b == 0) return (random(4));
     if (a == b) return b;
     if (a > b) return b+(random(MAX_POSITIVE_NUMBER) % (a-b+1));
     return a+(random(MAX_POSITIVE_NUMBER) % (b-a+1));
@@ -9424,7 +9427,7 @@ Constant REL_BLOCK_HEADER ($100*6 + $$1101)*$10000;
 [ KOVDomainSize k;
     k = KindAtomic(k);
     switch(k) {
-        39: return 1;
+        39: return 4;
         40: return 1;
         41: return 0;
         42: return 0;
@@ -9525,14 +9528,14 @@ Array Map_Storage -->
 Class VPH_Class;
 Array KOV_representatives --> 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ValuePropertyHolder_39 0 0 0 0 0 0 0 0 ;
 VPH_Class ValuePropertyHolder_39
-    with value_range 1
+    with value_range 4
     with p54_recurring KOVP_39_P54
     with description KOVP_39_P6
 ;
 ! Storage for property p54_recurring of kind SCENE_TY
-Array KOVP_39_P54 table 0 0 (true) ;
+Array KOVP_39_P54 table 0 0 (true) (true) (true) (true) ;
 ! Storage for property description of kind SCENE_TY
-Array KOVP_39_P6 table 0 0 (EMPTY_TEXT_VALUE) ;
+Array KOVP_39_P6 table 0 0 (EMPTY_TEXT_VALUE) (EMPTY_TEXT_VALUE) (EMPTY_TEXT_VALUE) (EMPTY_TEXT_VALUE) ;
 Class K0_kind 
     has ~pluralname
     has ~proper
@@ -9556,13 +9559,13 @@ Class K2_thing
     with component_parent nothing
     with component_child nothing
     with component_sibling nothing
+    has ~static
     has ~concealed
     has ~workflag
     has mentioned
     has ~privately_named
     has ~light
     has ~edible
-    has ~static
     has ~scenery
     has ~clothing
     has ~pushable
@@ -9617,12 +9620,12 @@ Class K12_animal
 Class K4_door 
     class K2_thing
      has door, 
+    has static
     has ~pushable
     has ~open
     has openable
     has ~lockable
     has ~locked
-    has static
     with plural "doors"
     with door_to nothing
     with with_key nothing
@@ -9644,23 +9647,23 @@ Class K5_container
 
 Class K14_vehicle 
     class K5_container
-    has enterable
     has static
+    has enterable
     with plural "vehicles"
 ;
 
 Class K15_player_s_holdall 
     class K5_container
-    has openable
     has ~static
+    has openable
     with plural "player's holdalls"
 ;
 
 Class K7_backdrop 
     class K2_thing
-    has ~pushable
     has static
     has scenery
+    has ~pushable
     with plural "backdrops"
 ;
 
@@ -9699,11 +9702,11 @@ Object I46_north "" Compass
     with name 'north' 'n//' 
     with parse_name Parse_Name_GV1
     with action_bitmap 0 0 0 0 0 0 
-    with IK3_Link I47_northeast
     with KD_Count 3
-    with list_together 0
     with IK3_Count 0
+    with IK3_Link I47_northeast
     with vector 0
+    with list_together 0
     with p9_opposite I49_south
     with short_name "north"
     with article SC_5
@@ -9714,11 +9717,11 @@ Object I47_northeast "" Compass
     with name 'northeast' 'ne' 
     with parse_name Parse_Name_GV2
     with action_bitmap 0 0 0 0 0 0 
-    with IK3_Link I48_northwest
     with KD_Count 3
-    with list_together 0
     with IK3_Count 1
+    with IK3_Link I48_northwest
     with vector 0
+    with list_together 0
     with p9_opposite I51_southwest
     with short_name "northeast"
     with article SC_5
@@ -9729,11 +9732,11 @@ Object I48_northwest "" Compass
     with name 'northwest' 'nw' 
     with parse_name Parse_Name_GV3
     with action_bitmap 0 0 0 0 0 0 
-    with IK3_Link I49_south
     with KD_Count 3
-    with list_together 0
     with IK3_Count 2
+    with IK3_Link I49_south
     with vector 0
+    with list_together 0
     with p9_opposite I50_southeast
     with short_name "northwest"
     with article SC_5
@@ -9744,11 +9747,11 @@ Object I49_south "" Compass
     with name 'south' 's//' 
     with parse_name Parse_Name_GV4
     with action_bitmap 0 0 0 0 0 0 
-    with IK3_Link I50_southeast
     with KD_Count 3
-    with list_together 0
     with IK3_Count 3
+    with IK3_Link I50_southeast
     with vector 0
+    with list_together 0
     with p9_opposite I46_north
     with short_name "south"
     with article SC_5
@@ -9759,11 +9762,11 @@ Object I50_southeast "" Compass
     with name 'southeast' 'se' 
     with parse_name Parse_Name_GV5
     with action_bitmap 0 0 0 0 0 0 
-    with IK3_Link I51_southwest
     with KD_Count 3
-    with list_together 0
     with IK3_Count 4
+    with IK3_Link I51_southwest
     with vector 0
+    with list_together 0
     with p9_opposite I48_northwest
     with short_name "southeast"
     with article SC_5
@@ -9774,11 +9777,11 @@ Object I51_southwest "" Compass
     with name 'southwest' 'sw' 
     with parse_name Parse_Name_GV6
     with action_bitmap 0 0 0 0 0 0 
-    with IK3_Link I52_east
     with KD_Count 3
-    with list_together 0
     with IK3_Count 5
+    with IK3_Link I52_east
     with vector 0
+    with list_together 0
     with p9_opposite I47_northeast
     with short_name "southwest"
     with article SC_5
@@ -9789,11 +9792,11 @@ Object I52_east "" Compass
     with name 'east' 'e//' 
     with parse_name Parse_Name_GV7
     with action_bitmap 0 0 0 0 0 0 
-    with IK3_Link I53_west
     with KD_Count 3
-    with list_together 0
     with IK3_Count 6
+    with IK3_Link I53_west
     with vector 0
+    with list_together 0
     with p9_opposite I53_west
     with short_name "east"
     with article SC_5
@@ -9804,11 +9807,11 @@ Object I53_west "" Compass
     with name 'west' 'w//' 
     with parse_name Parse_Name_GV8
     with action_bitmap 0 0 0 0 0 0 
-    with IK3_Link I54_up
     with KD_Count 3
-    with list_together 0
     with IK3_Count 7
+    with IK3_Link I54_up
     with vector 0
+    with list_together 0
     with p9_opposite I52_east
     with short_name "west"
     with article SC_5
@@ -9819,11 +9822,11 @@ Object I54_up "" Compass
     with name 'up' 'u//' 
     with parse_name Parse_Name_GV9
     with action_bitmap 0 0 0 0 0 0 
-    with IK3_Link I55_down
     with KD_Count 3
-    with list_together 0
     with IK3_Count 8
+    with IK3_Link I55_down
     with vector 0
+    with list_together 0
     with p9_opposite I55_down
     with short_name "up"
     with article SC_5
@@ -9834,11 +9837,11 @@ Object I55_down "" Compass
     with name 'down' 'd//' 
     with parse_name Parse_Name_GV10
     with action_bitmap 0 0 0 0 0 0 
-    with IK3_Link in_obj
     with KD_Count 3
-    with list_together 0
     with IK3_Count 9
+    with IK3_Link in_obj
     with vector 0
+    with list_together 0
     with p9_opposite I54_up
     with short_name "down"
     with article SC_5
@@ -9849,11 +9852,11 @@ Object in_obj "" Compass
     with name 'inside' 'in' 
     with parse_name Parse_Name_GV11
     with action_bitmap 0 0 0 0 0 0 
-    with IK3_Link out_obj
     with KD_Count 3
-    with list_together 0
     with IK3_Count 10
+    with IK3_Link out_obj
     with vector 0
+    with list_together 0
     with p9_opposite out_obj
     with short_name "inside"
     with article SC_5
@@ -9864,11 +9867,11 @@ Object out_obj "" Compass
     with name 'outside' 'out' 
     with parse_name Parse_Name_GV12
     with action_bitmap 0 0 0 0 0 0 
-    with IK3_Link nothing
     with KD_Count 3
-    with list_together 0
     with IK3_Count 11
+    with IK3_Link nothing
     with vector 0
+    with list_together 0
     with p9_opposite in_obj
     with short_name "outside"
     with article SC_5
@@ -9878,12 +9881,12 @@ Object I88_throne_room ""
     class K1_room
     with name 'throne' 'room' 
     with KD_Count 1
-    with room_index -1
-    with list_together 0
-    has mark_as_room
     with IK1_Count 0
     with IK1_Link nothing
     with vector 0
+    with room_index -1
+    with list_together 0
+    has mark_as_room
     with short_name "Throne Room"
     with description text_routine_0
 ;
@@ -9896,11 +9899,11 @@ Object -> I90_carpets ""
     with IK16_Count 0
     with IK16_Link I91_furniture
     with KD_Count 16
-    with list_together 0
-    has mark_as_thing
     with IK2_Count 1
     with IK2_Link I91_furniture
     with vector 0
+    with list_together 0
+    has mark_as_thing
     has static
     has scenery
     with short_name "carpets"
@@ -9914,15 +9917,15 @@ Object -> I91_furniture ""
     with IK16_Count 1
     with IK16_Link I92_ornaments
     with KD_Count 16
-    with list_together 0
-    with cap_short_name "Furniture"
-    has mark_as_thing
     with IK2_Count 2
     with IK2_Link I92_ornaments
     with vector 0
-    has proper
+    with list_together 0
+    with cap_short_name "Furniture"
+    has mark_as_thing
     has static
     has scenery
+    has proper
     with short_name "furniture"
 ;
 
@@ -9934,15 +9937,15 @@ Object -> I92_ornaments ""
     with IK16_Count 2
     with IK16_Link I93_stone_floor
     with KD_Count 16
-    with list_together 0
-    with cap_short_name "Ornaments"
-    has mark_as_thing
     with IK2_Count 3
     with IK2_Link I93_stone_floor
     with vector 0
-    has proper
+    with list_together 0
+    with cap_short_name "Ornaments"
+    has mark_as_thing
     has static
     has scenery
+    has proper
     with short_name "ornaments"
 ;
 
@@ -9954,15 +9957,15 @@ Object -> I93_stone_floor ""
     with IK16_Count 3
     with IK16_Link I94_sunlight
     with KD_Count 16
-    with list_together 0
-    with cap_short_name "Stone floor"
-    has mark_as_thing
     with IK2_Count 4
     with IK2_Link I94_sunlight
     with vector 0
-    has proper
+    with list_together 0
+    with cap_short_name "Stone floor"
+    has mark_as_thing
     has static
     has scenery
+    has proper
     with short_name "stone floor"
 ;
 
@@ -9974,15 +9977,15 @@ Object -> I94_sunlight ""
     with IK16_Count 4
     with IK16_Link I95_high_windows
     with KD_Count 16
-    with list_together 0
-    with cap_short_name "Sunlight"
-    has mark_as_thing
     with IK2_Count 5
     with IK2_Link I95_high_windows
     with vector 0
-    has proper
+    with list_together 0
+    with cap_short_name "Sunlight"
+    has mark_as_thing
     has static
     has scenery
+    has proper
     with short_name "sunlight"
     with description SC_6
 ;
@@ -9995,15 +9998,15 @@ Object -> I95_high_windows ""
     with IK16_Count 5
     with IK16_Link nothing
     with KD_Count 16
-    with list_together 0
-    with cap_short_name "High windows"
-    has mark_as_thing
     with IK2_Count 6
     with IK2_Link I96_the_throne_of_hamurabi
     with vector 0
-    has proper
+    with list_together 0
+    with cap_short_name "High windows"
+    has mark_as_thing
     has static
     has scenery
+    has proper
     with short_name "high windows"
     with description SC_7
 ;
@@ -10012,19 +10015,19 @@ Object -> I96_the_throne_of_hamurabi ""
     class K6_supporter
     with name 'the' 'throne' 'of' 'hamurabi' 
     with action_bitmap 0 0 0 0 0 0 
+    with KD_Count 6
+    with IK2_Count 7
+    with IK2_Link selfobj
     with IK6_Count 0
     with IK6_Link nothing
-    with KD_Count 6
+    with vector 0
     with list_together 0
     with cap_short_name "The Throne of Hamurabi"
     has mark_as_thing
-    with IK2_Count 7
-    with IK2_Link selfobj
-    with vector 0
-    has enterable
-    has proper
     has static
     has scenery
+    has enterable
+    has proper
     with short_name "The Throne of Hamurabi"
     with description SC_8
 ;
@@ -10036,15 +10039,15 @@ Object -> -> selfobj ""
      
     with name 'yourself' 
     with action_bitmap 0 0 0 0 0 0 
+    with KD_Count 8
+    with IK2_Count 0
+    with IK2_Link I97_linen_skirt
     with IK8_Count 0
     with IK8_Link I109_steward
-    with KD_Count 8
+    with vector 0
     with list_together 0
     with cap_short_name "Yourself"
     has mark_as_thing
-    with IK2_Count 0
-    with IK2_Link I97_linen_skirt
-    with vector 0
     has concealed
     has proper
     with short_name "yourself"
@@ -10056,13 +10059,13 @@ Object -> -> -> I97_linen_skirt ""
     with name 'linen' 'skirt' 
     with action_bitmap 0 0 0 0 0 0 
     with KD_Count 2
-    with list_together 0
-    has mark_as_thing
-    with component_child I102_gold_clasp
     with IK2_Count 8
     with IK2_Link I98_chestplate
     has worn
     with vector 0
+    with list_together 0
+    has mark_as_thing
+    with component_child I102_gold_clasp
     has clothing
     with short_name "linen skirt"
     with description SC_9
@@ -10073,14 +10076,14 @@ Object -> -> -> I98_chestplate ""
     with name 'chestplate' 
     with action_bitmap 0 0 0 0 0 0 
     with KD_Count 2
-    with list_together 0
-    with cap_short_name "Chestplate"
-    has mark_as_thing
-    with component_child I103_depictions
     with IK2_Count 9
     with IK2_Link I99_golden_sandals
     has worn
     with vector 0
+    with list_together 0
+    with cap_short_name "Chestplate"
+    has mark_as_thing
+    with component_child I103_depictions
     has clothing
     has proper
     with short_name "chestplate"
@@ -10092,14 +10095,14 @@ Object -> -> -> I99_golden_sandals ""
     with name 'golden' 'sandals' 
     with action_bitmap 0 0 0 0 0 0 
     with KD_Count 2
-    with list_together 0
-    with cap_short_name "Golden sandals"
-    has mark_as_thing
-    with component_child I104_laces
     with IK2_Count 10
     with IK2_Link I100_ornate_crown
     has worn
     with vector 0
+    with list_together 0
+    with cap_short_name "Golden sandals"
+    has mark_as_thing
+    with component_child I104_laces
     has clothing
     has proper
     with short_name "golden sandals"
@@ -10111,13 +10114,13 @@ Object -> -> -> I100_ornate_crown ""
     with name 'ornate' 'crown' 
     with action_bitmap 0 0 0 0 0 0 
     with KD_Count 2
-    with list_together 0
-    has mark_as_thing
-    with component_child I105_precious_stones
     with IK2_Count 11
     with IK2_Link I101_the_rod_of_hamurabi
     has worn
     with vector 0
+    with list_together 0
+    has mark_as_thing
+    with component_child I105_precious_stones
     has clothing
     with short_name "ornate crown"
     with description text_routine_4
@@ -10128,13 +10131,13 @@ Object -> -> -> I101_the_rod_of_hamurabi ""
     with name 'the' 'rod' 'of' 'hamurabi' 
     with action_bitmap 0 0 0 0 0 0 
     with KD_Count 2
+    with IK2_Count 12
+    with IK2_Link I109_steward
+    with vector 0
     with list_together 0
     with cap_short_name "The Rod of Hamurabi"
     has mark_as_thing
     with component_child I106_sparkling_sapphire
-    with IK2_Count 12
-    with IK2_Link I109_steward
-    with vector 0
     has proper
     with short_name "The Rod of Hamurabi"
     with description text_routine_5
@@ -10144,17 +10147,17 @@ Object -> I109_steward ""
     class K8_person
     with name 'steward' 
     with action_bitmap 0 0 0 0 0 0 
-    with IK8_Count 1
-    with IK8_Link nothing
     with KD_Count 8
-    with list_together 0
-    has mark_as_thing
     with IK2_Count 20
     with IK2_Link I110_modest_tunic
+    with IK8_Count 1
+    with IK8_Link nothing
     with vector 0
+    with list_together 0
+    has mark_as_thing
+    with initial SC_10
     with short_name "Steward"
     with description text_routine_6
-    with initial SC_10
 ;
 
 Object -> -> I110_modest_tunic ""
@@ -10162,13 +10165,13 @@ Object -> -> I110_modest_tunic ""
     with name 'modest' 'tunic' 
     with action_bitmap 0 0 0 0 0 0 
     with KD_Count 2
-    with list_together 0
-    has mark_as_thing
-    with component_child I116_leather_belt
     with IK2_Count 21
     with IK2_Link I111_leather_sandals
     has worn
     with vector 0
+    with list_together 0
+    has mark_as_thing
+    with component_child I116_leather_belt
     has clothing
     with short_name "modest tunic"
     with description text_routine_7
@@ -10179,13 +10182,13 @@ Object -> -> I111_leather_sandals ""
     with name 'leather' 'sandals' 
     with action_bitmap 0 0 0 0 0 0 
     with KD_Count 2
-    with list_together 0
-    with cap_short_name "Leather sandals"
-    has mark_as_thing
     with IK2_Count 22
     with IK2_Link I112_the_staff_of_stewardshi
     has worn
     with vector 0
+    with list_together 0
+    with cap_short_name "Leather sandals"
+    has mark_as_thing
     has clothing
     has proper
     with short_name "leather sandals"
@@ -10197,13 +10200,13 @@ Object -> -> I112_the_staff_of_stewardshi ""
     with name 'the' 'staff' 'of' 'stewardship' 
     with action_bitmap 0 0 0 0 0 0 
     with KD_Count 2
+    with IK2_Count 23
+    with IK2_Link I113_the_annual_journal
+    with vector 0
     with list_together 0
     with cap_short_name "The Staff of Stewardship"
     has mark_as_thing
     with component_child I117_scar
-    with IK2_Count 23
-    with IK2_Link I113_the_annual_journal
-    with vector 0
     has proper
     with short_name "The Staff of Stewardship"
     with description text_routine_8
@@ -10214,13 +10217,13 @@ Object -> -> I113_the_annual_journal ""
     with name 'the' 'annual' 'journal' 
     with action_bitmap 0 0 0 0 0 0 
     with KD_Count 2
+    with IK2_Count 24
+    with IK2_Link I114_iron_stylus
+    with vector 0
     with list_together 0
     with cap_short_name "The Annual Journal"
     has mark_as_thing
     with component_child I118_pages
-    with IK2_Count 24
-    with IK2_Link I114_iron_stylus
-    with vector 0
     has proper
     with short_name "The Annual Journal"
     with description SC_12
@@ -10232,12 +10235,12 @@ Object -> -> I114_iron_stylus ""
     with parse_name Parse_Name_GV101
     with action_bitmap 0 0 0 0 0 0 
     with KD_Count 2
-    with list_together 0
-    has mark_as_thing
-    with component_child I115_angular_tip
     with IK2_Count 25
     with IK2_Link I102_gold_clasp
     with vector 0
+    with list_together 0
+    has mark_as_thing
+    with component_child I115_angular_tip
     with short_name "iron stylus"
     with description SC_13
 ;
@@ -10247,12 +10250,12 @@ Object I102_gold_clasp ""
     with name 'gold' 'clasp' 
     with action_bitmap 0 0 0 0 0 0 
     with KD_Count 2
-    with list_together 0
-    has mark_as_thing
-    with component_parent I97_linen_skirt
     with IK2_Count 13
     with IK2_Link I103_depictions
     with vector 0
+    with list_together 0
+    has mark_as_thing
+    with component_parent I97_linen_skirt
     with short_name "gold clasp"
     with description SC_14
 ;
@@ -10262,13 +10265,13 @@ Object I103_depictions ""
     with name 'depictions' 
     with action_bitmap 0 0 0 0 0 0 
     with KD_Count 2
+    with IK2_Count 14
+    with IK2_Link I104_laces
+    with vector 0
     with list_together 0
     with cap_short_name "Depictions"
     has mark_as_thing
     with component_parent I98_chestplate
-    with IK2_Count 14
-    with IK2_Link I104_laces
-    with vector 0
     has proper
     with short_name "depictions"
     with description SC_15
@@ -10279,13 +10282,13 @@ Object I104_laces ""
     with name 'laces' 
     with action_bitmap 0 0 0 0 0 0 
     with KD_Count 2
+    with IK2_Count 15
+    with IK2_Link I105_precious_stones
+    with vector 0
     with list_together 0
     with cap_short_name "Laces"
     has mark_as_thing
     with component_parent I99_golden_sandals
-    with IK2_Count 15
-    with IK2_Link I105_precious_stones
-    with vector 0
     has proper
     with short_name "laces"
 ;
@@ -10295,13 +10298,13 @@ Object I105_precious_stones ""
     with name 'precious' 'stones' 
     with action_bitmap 0 0 0 0 0 0 
     with KD_Count 2
+    with IK2_Count 16
+    with IK2_Link I106_sparkling_sapphire
+    with vector 0
     with list_together 0
     with cap_short_name "Precious stones"
     has mark_as_thing
     with component_parent I100_ornate_crown
-    with IK2_Count 16
-    with IK2_Link I106_sparkling_sapphire
-    with vector 0
     has proper
     with short_name "Precious stones"
     with description SC_16
@@ -10312,13 +10315,13 @@ Object I106_sparkling_sapphire ""
     with name 'sparkling' 'sapphire' 
     with action_bitmap 0 0 0 0 0 0 
     with KD_Count 2
+    with IK2_Count 17
+    with IK2_Link I107_mystic_writing
+    with vector 0
     with list_together 0
     has mark_as_thing
     with component_parent I101_the_rod_of_hamurabi
     with component_sibling I107_mystic_writing
-    with IK2_Count 17
-    with IK2_Link I107_mystic_writing
-    with vector 0
     with short_name "sparkling sapphire"
     with description SC_17
 ;
@@ -10328,14 +10331,14 @@ Object I107_mystic_writing ""
     with name 'mystic' 'writing' 
     with action_bitmap 0 0 0 0 0 0 
     with KD_Count 2
+    with IK2_Count 18
+    with IK2_Link I108_arcane_symbols
+    with vector 0
     with list_together 0
     with cap_short_name "Mystic writing"
     has mark_as_thing
     with component_parent I101_the_rod_of_hamurabi
     with component_sibling I108_arcane_symbols
-    with IK2_Count 18
-    with IK2_Link I108_arcane_symbols
-    with vector 0
     has proper
     with short_name "Mystic writing"
     with description SC_18
@@ -10346,13 +10349,13 @@ Object I108_arcane_symbols ""
     with name 'arcane' 'symbols' 
     with action_bitmap 0 0 0 0 0 0 
     with KD_Count 2
+    with IK2_Count 19
+    with IK2_Link I115_angular_tip
+    with vector 0
     with list_together 0
     with cap_short_name "Arcane symbols"
     has mark_as_thing
     with component_parent I101_the_rod_of_hamurabi
-    with IK2_Count 19
-    with IK2_Link I115_angular_tip
-    with vector 0
     has proper
     with short_name "Arcane symbols"
     with description SC_19
@@ -10363,12 +10366,12 @@ Object I115_angular_tip ""
     with name 'angular' 'tip' 
     with action_bitmap 0 0 0 0 0 0 
     with KD_Count 2
-    with list_together 0
-    has mark_as_thing
-    with component_parent I114_iron_stylus
     with IK2_Count 26
     with IK2_Link I116_leather_belt
     with vector 0
+    with list_together 0
+    has mark_as_thing
+    with component_parent I114_iron_stylus
     with short_name "angular tip"
     with description SC_20
 ;
@@ -10378,12 +10381,12 @@ Object I116_leather_belt ""
     with name 'leather' 'belt' 
     with action_bitmap 0 0 0 0 0 0 
     with KD_Count 2
-    with list_together 0
-    has mark_as_thing
-    with component_parent I110_modest_tunic
     with IK2_Count 27
     with IK2_Link I117_scar
     with vector 0
+    with list_together 0
+    has mark_as_thing
+    with component_parent I110_modest_tunic
     with short_name "leather belt"
     with description SC_21
 ;
@@ -10393,14 +10396,14 @@ Object I117_scar ""
     with name 'scar' 
     with action_bitmap 0 0 0 0 0 0 
     with KD_Count 2
-    with list_together 0
-    has mark_as_thing
-    with component_parent I112_the_staff_of_stewardshi
     with IK2_Count 28
     with IK2_Link I118_pages
     with vector 0
-    with short_name "scar"
+    with list_together 0
+    has mark_as_thing
+    with component_parent I112_the_staff_of_stewardshi
     with initial SC_22
+    with short_name "scar"
 ;
 
 Object I118_pages ""
@@ -10408,13 +10411,13 @@ Object I118_pages ""
     with name 'pages' 
     with action_bitmap 0 0 0 0 0 0 
     with KD_Count 2
+    with IK2_Count 29
+    with IK2_Link nothing
+    with vector 0
     with list_together 0
     with cap_short_name "Pages"
     has mark_as_thing
     with component_parent I113_the_annual_journal
-    with IK2_Count 29
-    with IK2_Link nothing
-    with vector 0
     has proper
     with short_name "pages"
     with description SC_23
@@ -10442,6 +10445,9 @@ Constant I84_nothing_to_do_error = 17;
 Constant I85_noun_did_not_make_sense_ = 18;
 Constant I86_referred_to_a_determinat = 19;
 Constant I87_i_beg_your_pardon_error = 20;
+Constant I123_fall = 2;
+Constant I124_spring = 3;
+Constant I125_winter = 4;
 Array Global_Vars -->
   (false) ! 7
   (SC_24) ! 24
@@ -10453,6 +10459,7 @@ Array Global_Vars -->
   (0) ! 34
   (0) ! 43
   (10) ! 51
+  (0) ! 52
 ;
 
 
@@ -11690,7 +11697,7 @@ self = noun;
 ! Before printing the banner text:
 [ R_740 ;
       ! phrase 1
-      ! [1: say ~Govern ancient Sumer for 10 short years...[paragraph break]~]
+      ! [1: say ~Govern ancient Sumer for 10 years...[paragraph break]~]
       say__p=1;ParaContent();  print (PrintText) SC_46; ParaContent();  DivideParagraphPoint(); new_line;  .L_Say12; .L_SayX12;
    rfalse;
 ];
@@ -11705,9 +11712,9 @@ self = noun;
 ! After printing the banner text:
 [ R_741 ;
       ! phrase 1
-      ! [1: say ~Copyright [unicode 169] 2012 Bart Massey; based on David Ahl's famous 1978 BASIC game HAMURABI, which was in turn a port of Doug Dyment's 1968 FOCAL game [italic type]The Sumer Game.[roman type][paragraph break]~]
+      ! [1: say ~Copyright [unicode 169] 2012 Bart Massey; based on David Ahl's famous 1978 BASIC game [italic type]HAMURABI,[roman type] which was in turn a port of Doug Dyment's 1968 FOCAL game [italic type]The Sumer Game.[roman type][paragraph break]~]
       say__p=1;ParaContent();  print (PrintText) SC_47; ParaContent();  #ifdef TARGET_ZCODE; @push self; self = 169; @print_unicode self; @pull self;
-	#ifnot; if (unicode_gestalt_ok) glk_put_char_uni(169); else print "?"; #endif; ParaContent();  print (PrintText) SC_48; ParaContent();  style underline; ParaContent();  print (PrintText) SC_49; ParaContent();  style roman; ParaContent();  DivideParagraphPoint(); new_line;  .L_Say13; .L_SayX13;
+	#ifnot; if (unicode_gestalt_ok) glk_put_char_uni(169); else print "?"; #endif; ParaContent();  print (PrintText) SC_48; ParaContent();  style underline; ParaContent();  print (PrintText) SC_49; ParaContent();  style roman; ParaContent();  print (PrintText) SC_50; ParaContent();  style underline; ParaContent();  print (PrintText) SC_51; ParaContent();  style roman; ParaContent();  DivideParagraphPoint(); new_line;  .L_Say13; .L_SayX13;
    rfalse;
 ];
 ! ----------------------------------------------------------------------------------------------------
@@ -11898,7 +11905,7 @@ self = noun;
        if (((t_0 < 1))) {  if (ProcessRulebook(IMMEDIATELY_QUIT_R)) rtrue;   }
       ! phrase 10
       ! [10: say ~Would you like to ~]
-      say__p=1;ParaContent();  print (PrintText) SC_50;  .L_Say14; .L_SayX14;
+      say__p=1;ParaContent();  print (PrintText) SC_52;  .L_Say14; .L_SayX14;
       ! phrase 11
       ! [11: repeat through the table of final question options begin]
        @push ct_0; @push ct_1;
@@ -11925,23 +11932,23 @@ self = noun;
                    if (((t_0 == 0)))  {
                      ! phrase 18
                      ! [18: say ~?[line break]~]
-                     say__p=1;ParaContent();  print (PrintText) SC_51; ParaContent();  new_line;  .L_Say16; .L_SayX16;
+                     say__p=1;ParaContent();  print (PrintText) SC_53; ParaContent();  new_line;  .L_Say16; .L_SayX16;
                      ! phrase 19
                      ! [19: otherwise if the named options count is 1]
                       } else if (((t_0 == 1))) { 
                      ! phrase 20
                      ! [20: if the serial comma option is active , say ~,~]
-                      if ((((Adj_22_t1_v15(5))))) { say__p=1;ParaContent();  print (PrintText) SC_52;  .L_Say17; .L_SayX17;  }
+                      if ((((Adj_22_t1_v15(5))))) { say__p=1;ParaContent();  print (PrintText) SC_54;  .L_Say17; .L_SayX17;  }
                      ! phrase 21
                      ! [21: say ~ or ~]
-                     say__p=1;ParaContent();  print (PrintText) SC_53;  .L_Say18; .L_SayX18;
+                     say__p=1;ParaContent();  print (PrintText) SC_55;  .L_Say18; .L_SayX18;
                      ! phrase 22
                      ! [22: otherwise]
                      } else {
 
                      ! phrase 23
                      ! [23: say ~, ~]
-                     say__p=1;ParaContent();  print (PrintText) SC_54;  .L_Say19; .L_SayX19;
+                     say__p=1;ParaContent();  print (PrintText) SC_56;  .L_Say19; .L_SayX19;
                      ! phrase 24
                      ! [24: end if]
                      }
@@ -11970,7 +11977,7 @@ self = noun;
 [ R_68 ;
       ! phrase 1
       ! [1: say ~> [run paragraph on]~]
-      say__p=1;ParaContent();  print (PrintText) SC_55; ParaContent();  RunParagraphOn();  .L_Say20; .L_SayX20;
+      say__p=1;ParaContent();  print (PrintText) SC_57; ParaContent();  RunParagraphOn();  .L_Say20; .L_SayX20;
    rfalse;
 ];
 ! ----------------------------------------------------------------------------------------------------
@@ -12223,40 +12230,40 @@ self = noun;
                 if (((t_0 ofclass K1_room)))  {
                   ! phrase 22
                   ! [22: if the domain is the location , say ~You ~]
-                   if (((t_0 == real_location))) { say__p=1;ParaContent();  print (PrintText) SC_56;  .L_Say21; .L_SayX21;  }
+                   if (((t_0 == real_location))) { say__p=1;ParaContent();  print (PrintText) SC_58;  .L_Say21; .L_SayX21;  }
                   ! phrase 23
                   ! [23: otherwise say ~In [the domain] you ~]
-                   else { say__p=1;ParaContent();  print (PrintText) SC_57; ParaContent();  print (the) t_0; ParaContent();  print (PrintText) SC_58;  .L_Say22; .L_SayX22;  }
+                   else { say__p=1;ParaContent();  print (PrintText) SC_59; ParaContent();  print (the) t_0; ParaContent();  print (PrintText) SC_60;  .L_Say22; .L_SayX22;  }
                   ! phrase 24
                   ! [24: otherwise if the domain is a supporter]
                    } else if (((t_0 ofclass K6_supporter))) { 
                   ! phrase 25
                   ! [25: say ~On [the domain] you ~]
-                  say__p=1;ParaContent();  print (PrintText) SC_59; ParaContent();  print (the) t_0; ParaContent();  print (PrintText) SC_58;  .L_Say23; .L_SayX23;
+                  say__p=1;ParaContent();  print (PrintText) SC_61; ParaContent();  print (the) t_0; ParaContent();  print (PrintText) SC_60;  .L_Say23; .L_SayX23;
                   ! phrase 26
                   ! [26: otherwise if the domain is an animal]
                    } else if (((t_0 ofclass K12_animal))) { 
                   ! phrase 27
                   ! [27: say ~On [the domain] you ~]
-                  say__p=1;ParaContent();  print (PrintText) SC_59; ParaContent();  print (the) t_0; ParaContent();  print (PrintText) SC_58;  .L_Say24; .L_SayX24;
+                  say__p=1;ParaContent();  print (PrintText) SC_61; ParaContent();  print (the) t_0; ParaContent();  print (PrintText) SC_60;  .L_Say24; .L_SayX24;
                   ! phrase 28
                   ! [28: otherwise]
                   } else {
 
                   ! phrase 29
                   ! [29: say ~In [the domain] you ~]
-                  say__p=1;ParaContent();  print (PrintText) SC_57; ParaContent();  print (the) t_0; ParaContent();  print (PrintText) SC_58;  .L_Say25; .L_SayX25;
+                  say__p=1;ParaContent();  print (PrintText) SC_59; ParaContent();  print (the) t_0; ParaContent();  print (PrintText) SC_60;  .L_Say25; .L_SayX25;
                   ! phrase 30
                   ! [30: end if]
                   }
 
                ! phrase 31
                ! [31: say ~can [if the locale paragraph count is greater than 0]also [end if]see ~]
-               say__p=1;ParaContent();  print (PrintText) SC_60; 
+               say__p=1;ParaContent();  print (PrintText) SC_62; 
 	if (~~(((((Global_Vars-->8) > 0))))) jump L_Say26;
-		ParaContent();  print (PrintText) SC_61; 
+		ParaContent();  print (PrintText) SC_63; 
 	.L_Say26; .L_SayX26;
-		ParaContent();  print (PrintText) SC_62;  .L_Say27; .L_SayX27;
+		ParaContent();  print (PrintText) SC_64;  .L_Say27; .L_SayX27;
                ! phrase 32
                ! [32: let the common holder be nothing]
                 t_2 = nothing; 
@@ -12302,10 +12309,10 @@ self = noun;
 		@pull subst__v;  .L_Say28; .L_SayX28;  }
                ! phrase 44
                ! [44: if the domain is the location , say ~ here~]
-                if (((t_0 == real_location))) { say__p=1;ParaContent();  print (PrintText) SC_63;  .L_Say29; .L_SayX29;  }
+                if (((t_0 == real_location))) { say__p=1;ParaContent();  print (PrintText) SC_65;  .L_Say29; .L_SayX29;  }
                ! phrase 45
                ! [45: say ~.[paragraph break]~]
-               say__p=1;ParaContent();  print (PrintText) SC_64; ParaContent();  DivideParagraphPoint(); new_line;  .L_Say30; .L_SayX30;
+               say__p=1;ParaContent();  print (PrintText) SC_66; ParaContent();  DivideParagraphPoint(); new_line;  .L_Say30; .L_SayX30;
                ! phrase 46
                ! [46: unfilter list recursion]
                 list_filter_routine = 0; 
@@ -12566,13 +12573,13 @@ self = noun;
 
                ! phrase 13
                ! [13: say ~On [the item] ~]
-               say__p=1;ParaContent();  print (PrintText) SC_59; ParaContent();  print (the) t_0; ParaContent();  print (PrintText) SC_45;  .L_Say35; .L_SayX35;
+               say__p=1;ParaContent();  print (PrintText) SC_61; ParaContent();  print (the) t_0; ParaContent();  print (PrintText) SC_45;  .L_Say35; .L_SayX35;
                ! phrase 14
                ! [14: list the contents of the item , as a sentence , including contents , giving brief inventory information , tersely , not listing concealed items , prefacing with is/are , listing marked items only]
                 WriteListFrom(child(t_0), 3800); 
                ! phrase 15
                ! [15: say ~.[paragraph break]~]
-               say__p=1;ParaContent();  print (PrintText) SC_64; ParaContent();  DivideParagraphPoint(); new_line;  .L_Say36; .L_SayX36;
+               say__p=1;ParaContent();  print (PrintText) SC_66; ParaContent();  DivideParagraphPoint(); new_line;  .L_Say36; .L_SayX36;
                ! phrase 16
                ! [16: end if]
                }
@@ -12640,13 +12647,13 @@ self = noun;
              (Global_Vars-->8) = (Global_Vars-->8) + 1; 
             ! phrase 11
             ! [11: say ~On [the item] ~]
-            say__p=1;ParaContent();  print (PrintText) SC_59; ParaContent();  print (the) t_0; ParaContent();  print (PrintText) SC_45;  .L_Say37; .L_SayX37;
+            say__p=1;ParaContent();  print (PrintText) SC_61; ParaContent();  print (the) t_0; ParaContent();  print (PrintText) SC_45;  .L_Say37; .L_SayX37;
             ! phrase 12
             ! [12: list the contents of the item , as a sentence , including contents , giving brief inventory information , tersely , not listing concealed items , prefacing with is/are , listing marked items only]
              WriteListFrom(child(t_0), 3800); 
             ! phrase 13
             ! [13: say ~.[paragraph break]~]
-            say__p=1;ParaContent();  print (PrintText) SC_64; ParaContent();  DivideParagraphPoint(); new_line;  .L_Say38; .L_SayX38;
+            say__p=1;ParaContent();  print (PrintText) SC_66; ParaContent();  DivideParagraphPoint(); new_line;  .L_Say38; .L_SayX38;
             ! phrase 14
             ! [14: end if]
             }
@@ -12696,7 +12703,7 @@ self = noun;
        GL__M(##Inv,2,noun); 
       ! phrase 2
       ! [2: say ~:[line break]~]
-      say__p=1;ParaContent();  print (PrintText) SC_65; ParaContent();  new_line;  .L_Say39; .L_SayX39;
+      say__p=1;ParaContent();  print (PrintText) SC_67; ParaContent();  new_line;  .L_Say39; .L_SayX39;
       ! phrase 3
       ! [3: list the contents of the player , with newlines , indented , including contents , giving inventory information , with extra indentation]
        WriteListFrom(child(player), 8215); 
@@ -14347,7 +14354,7 @@ self = noun;
              AGL__M(##Go,26,noun); 
             ! phrase 66
             ! [66: say ~.~]
-            say__p=1;ParaContent();  print (PrintText) SC_64;  new_line; .L_Say41; .L_SayX41;
+            say__p=1;ParaContent();  print (PrintText) SC_66;  new_line; .L_Say41; .L_SayX41;
             ! phrase 67
             ! [67: try looking]
              TryAction(0, player, ##Look, 0, 0);; 
@@ -14360,7 +14367,7 @@ self = noun;
 
          ! phrase 70
          ! [70: say ~.~]
-         say__p=1;ParaContent();  print (PrintText) SC_64;  new_line; .L_Say42; .L_SayX42;
+         say__p=1;ParaContent();  print (PrintText) SC_66;  new_line; .L_Say42; .L_SayX42;
          ! phrase 71
          ! [71: end if]
          }
@@ -19738,7 +19745,7 @@ Array TimedEventTimesTable table 0 0;
 
 
 
-Array rulebooks_array --> B0_procedural B1_startup B2_turn_sequence B3_shutdown B4_scene_changing B5_when_play_begins B6_when_play_ends B7_when_scene_begins B8_when_scene_ends B9_every_turn B10_action_processing B11_setting_action_variables B12_specific_action_processi B13_player_s_action_awarenes B14_accessibility B15_reaching_inside B16_reaching_outside B17_visibility B18_persuasion B19_unsuccessful_attempt_by B20_before B21_instead B22_check B23_carry_out B24_after B25_report B26_does_the_player_mean B27_when_entire_game_begins B28_when_entire_game_ends B29_before_printing_the_name B30_for_printing_the_name B31_after_printing_the_name B32_before_printing_the_plur B33_for_printing_the_plural_ B34_after_printing_the_plura B35_before_printing_a_number B36_for_printing_a_number B37_after_printing_a_number B38_before_printing_room_des B39_for_printing_room_descri B40_after_printing_room_desc B41_before_listing_contents B42_for_listing_contents B43_after_listing_contents B44_before_grouping_together B45_for_grouping_together B46_after_grouping_together B47_before_writing_a_paragra B48_for_writing_a_paragraph_ B49_after_writing_a_paragrap B50_before_listing_nondescri B51_for_listing_nondescript_ B52_after_listing_nondescrip B53_before_printing_the_name B54_for_printing_the_name_of B55_after_printing_the_name_ B56_before_printing_the_desc B57_for_printing_the_descrip B58_after_printing_the_descr B59_before_printing_the_anno B60_for_printing_the_announc B61_after_printing_the_annou B62_before_printing_the_anno B63_for_printing_the_announc B64_after_printing_the_annou B65_before_printing_a_refusa B66_for_printing_a_refusal_t B67_after_printing_a_refusal B68_before_constructing_the_ B69_for_constructing_the_sta B70_after_constructing_the_s B71_before_printing_the_bann B72_for_printing_the_banner_ B73_after_printing_the_banne B74_before_reading_a_command B75_for_reading_a_command B76_after_reading_a_command B77_before_deciding_the_scop B78_for_deciding_the_scope B79_after_deciding_the_scope B80_before_deciding_the_conc B81_for_deciding_the_conceal B82_after_deciding_the_conce B83_before_deciding_whether_ B84_for_deciding_whether_all B85_after_deciding_whether_a B86_before_clarifying_the_pa B87_for_clarifying_the_parse B88_after_clarifying_the_par B89_before_asking_which_do_y B90_for_asking_which_do_you_ B91_after_asking_which_do_yo B92_before_printing_a_parser B93_for_printing_a_parser_er B94_after_printing_a_parser_ B95_before_supplying_a_missi B96_for_supplying_a_missing_ B97_after_supplying_a_missin B98_before_supplying_a_missi B99_for_supplying_a_missing_ B100_after_supplying_a_missi B101_before_implicitly_takin B102_for_implicitly_taking B103_after_implicitly_taking B104_before_starting_the_vir B105_for_starting_the_virtua B106_after_starting_the_virt B107_before_amusing_a_victor B108_for_amusing_a_victoriou B109_after_amusing_a_victori B110_before_printing_the_pla B111_for_printing_the_player B112_after_printing_the_play B113_before_handling_the_fin B114_for_handling_the_final_ B115_after_handling_the_fina B116_before_printing_the_loc B117_for_printing_the_locale B118_after_printing_the_loca B119_before_choosing_notable B120_for_choosing_notable_lo B121_after_choosing_notable_ B122_before_printing_a_local B123_for_printing_a_locale_p B124_after_printing_a_locale B125_check_taking_inventory B126_carry_out_taking_invent B127_report_taking_inventory B128_check_taking B129_carry_out_taking B130_report_taking B131_check_removing_it_from B132_carry_out_removing_it_f B133_report_removing_it_from B134_check_dropping B135_carry_out_dropping B136_report_dropping B137_check_putting_it_on B138_carry_out_putting_it_on B139_report_putting_it_on B140_check_inserting_it_into B141_carry_out_inserting_it_ B142_report_inserting_it_int B143_check_eating B144_carry_out_eating B145_report_eating B146_check_going B147_carry_out_going B148_report_going B149_check_entering B150_carry_out_entering B151_report_entering B152_check_exiting B153_carry_out_exiting B154_report_exiting B155_check_getting_off B156_carry_out_getting_off B157_report_getting_off B158_check_looking B159_carry_out_looking B160_report_looking B161_check_examining B162_carry_out_examining B163_report_examining B164_check_looking_under B165_carry_out_looking_under B166_report_looking_under B167_check_searching B168_carry_out_searching B169_report_searching B170_check_consulting_it_abo B171_carry_out_consulting_it B172_report_consulting_it_ab B173_check_locking_it_with B174_carry_out_locking_it_wi B175_report_locking_it_with B176_check_unlocking_it_with B177_carry_out_unlocking_it_ B178_report_unlocking_it_wit B179_check_switching_on B180_carry_out_switching_on B181_report_switching_on B182_check_switching_off B183_carry_out_switching_off B184_report_switching_off B185_check_opening B186_carry_out_opening B187_report_opening B188_check_closing B189_carry_out_closing B190_report_closing B191_check_wearing B192_carry_out_wearing B193_report_wearing B194_check_taking_off B195_carry_out_taking_off B196_report_taking_off B197_check_giving_it_to B198_carry_out_giving_it_to B199_report_giving_it_to B200_check_showing_it_to B201_carry_out_showing_it_to B202_report_showing_it_to B203_check_waking B204_carry_out_waking B205_report_waking B206_check_throwing_it_at B207_carry_out_throwing_it_a B208_report_throwing_it_at B209_check_attacking B210_carry_out_attacking B211_report_attacking B212_check_kissing B213_carry_out_kissing B214_report_kissing B215_check_answering_it_that B216_carry_out_answering_it_ B217_report_answering_it_tha B218_check_telling_it_about B219_carry_out_telling_it_ab B220_report_telling_it_about B221_check_asking_it_about B222_carry_out_asking_it_abo B223_report_asking_it_about B224_check_asking_it_for B225_carry_out_asking_it_for B226_report_asking_it_for B227_check_waiting B228_carry_out_waiting B229_report_waiting B230_check_touching B231_carry_out_touching B232_report_touching B233_check_waving B234_carry_out_waving B235_report_waving B236_check_pulling B237_carry_out_pulling B238_report_pulling B239_check_pushing B240_carry_out_pushing B241_report_pushing B242_check_turning B243_carry_out_turning B244_report_turning B245_check_pushing_it_to B246_carry_out_pushing_it_to B247_report_pushing_it_to B248_check_squeezing B249_carry_out_squeezing B250_report_squeezing B251_check_saying_yes B252_carry_out_saying_yes B253_report_saying_yes B254_check_saying_no B255_carry_out_saying_no B256_report_saying_no B257_check_burning B258_carry_out_burning B259_report_burning B260_check_waking_up B261_carry_out_waking_up B262_report_waking_up B263_check_thinking B264_carry_out_thinking B265_report_thinking B266_check_smelling B267_carry_out_smelling B268_report_smelling B269_check_listening_to B270_carry_out_listening_to B271_report_listening_to B272_check_tasting B273_carry_out_tasting B274_report_tasting B275_check_cutting B276_carry_out_cutting B277_report_cutting B278_check_jumping B279_carry_out_jumping B280_report_jumping B281_check_tying_it_to B282_carry_out_tying_it_to B283_report_tying_it_to B284_check_drinking B285_carry_out_drinking B286_report_drinking B287_check_saying_sorry B288_carry_out_saying_sorry B289_report_saying_sorry B290_check_swearing_obscenel B291_carry_out_swearing_obsc B292_report_swearing_obscene B293_check_swearing_mildly B294_carry_out_swearing_mild B295_report_swearing_mildly B296_check_swinging B297_carry_out_swinging B298_report_swinging B299_check_rubbing B300_carry_out_rubbing B301_report_rubbing B302_check_setting_it_to B303_carry_out_setting_it_to B304_report_setting_it_to B305_check_waving_hands B306_carry_out_waving_hands B307_report_waving_hands B308_check_buying B309_carry_out_buying B310_report_buying B311_check_singing B312_carry_out_singing B313_report_singing B314_check_climbing B315_carry_out_climbing B316_report_climbing B317_check_sleeping B318_carry_out_sleeping B319_report_sleeping B320_check_quitting_the_game B321_carry_out_quitting_the_ B322_report_quitting_the_gam B323_check_saving_the_game B324_carry_out_saving_the_ga B325_report_saving_the_game B326_check_restoring_the_gam B327_carry_out_restoring_the B328_report_restoring_the_ga B329_check_restarting_the_ga B330_carry_out_restarting_th B331_report_restarting_the_g B332_check_verifying_the_sto B333_carry_out_verifying_the B334_report_verifying_the_st B335_check_switching_the_sto B336_carry_out_switching_the B337_report_switching_the_st B338_check_switching_the_sto B339_carry_out_switching_the B340_report_switching_the_st B341_check_requesting_the_st B342_carry_out_requesting_th B343_report_requesting_the_s B344_check_requesting_the_sc B345_carry_out_requesting_th B346_report_requesting_the_s B347_check_preferring_abbrev B348_carry_out_preferring_ab B349_report_preferring_abbre B350_check_preferring_unabbr B351_carry_out_preferring_un B352_report_preferring_unabb B353_check_preferring_someti B354_carry_out_preferring_so B355_report_preferring_somet B356_check_switching_score_n B357_carry_out_switching_sco B358_report_switching_score_ B359_check_switching_score_n B360_carry_out_switching_sco B361_report_switching_score_ B362_check_requesting_the_pr B363_carry_out_requesting_th B364_report_requesting_the_p 0;
+Array rulebooks_array --> B0_procedural B1_startup B2_turn_sequence B3_shutdown B4_scene_changing B5_when_play_begins B6_when_play_ends B7_when_scene_begins B8_when_scene_ends B9_every_turn B10_action_processing B11_setting_action_variables B12_specific_action_processi B13_player_s_action_awarenes B14_accessibility B15_reaching_inside B16_reaching_outside B17_visibility B18_persuasion B19_unsuccessful_attempt_by B20_before B21_instead B22_check B23_carry_out B24_after B25_report B26_does_the_player_mean B27_when_entire_game_begins B28_when_entire_game_ends B29_before_printing_the_name B30_for_printing_the_name B31_after_printing_the_name B32_before_printing_the_plur B33_for_printing_the_plural_ B34_after_printing_the_plura B35_before_printing_a_number B36_for_printing_a_number B37_after_printing_a_number B38_before_printing_room_des B39_for_printing_room_descri B40_after_printing_room_desc B41_before_listing_contents B42_for_listing_contents B43_after_listing_contents B44_before_grouping_together B45_for_grouping_together B46_after_grouping_together B47_before_writing_a_paragra B48_for_writing_a_paragraph_ B49_after_writing_a_paragrap B50_before_listing_nondescri B51_for_listing_nondescript_ B52_after_listing_nondescrip B53_before_printing_the_name B54_for_printing_the_name_of B55_after_printing_the_name_ B56_before_printing_the_desc B57_for_printing_the_descrip B58_after_printing_the_descr B59_before_printing_the_anno B60_for_printing_the_announc B61_after_printing_the_annou B62_before_printing_the_anno B63_for_printing_the_announc B64_after_printing_the_annou B65_before_printing_a_refusa B66_for_printing_a_refusal_t B67_after_printing_a_refusal B68_before_constructing_the_ B69_for_constructing_the_sta B70_after_constructing_the_s B71_before_printing_the_bann B72_for_printing_the_banner_ B73_after_printing_the_banne B74_before_reading_a_command B75_for_reading_a_command B76_after_reading_a_command B77_before_deciding_the_scop B78_for_deciding_the_scope B79_after_deciding_the_scope B80_before_deciding_the_conc B81_for_deciding_the_conceal B82_after_deciding_the_conce B83_before_deciding_whether_ B84_for_deciding_whether_all B85_after_deciding_whether_a B86_before_clarifying_the_pa B87_for_clarifying_the_parse B88_after_clarifying_the_par B89_before_asking_which_do_y B90_for_asking_which_do_you_ B91_after_asking_which_do_yo B92_before_printing_a_parser B93_for_printing_a_parser_er B94_after_printing_a_parser_ B95_before_supplying_a_missi B96_for_supplying_a_missing_ B97_after_supplying_a_missin B98_before_supplying_a_missi B99_for_supplying_a_missing_ B100_after_supplying_a_missi B101_before_implicitly_takin B102_for_implicitly_taking B103_after_implicitly_taking B104_before_starting_the_vir B105_for_starting_the_virtua B106_after_starting_the_virt B107_before_amusing_a_victor B108_for_amusing_a_victoriou B109_after_amusing_a_victori B110_before_printing_the_pla B111_for_printing_the_player B112_after_printing_the_play B113_before_handling_the_fin B114_for_handling_the_final_ B115_after_handling_the_fina B116_before_printing_the_loc B117_for_printing_the_locale B118_after_printing_the_loca B119_before_choosing_notable B120_for_choosing_notable_lo B121_after_choosing_notable_ B122_before_printing_a_local B123_for_printing_a_locale_p B124_after_printing_a_locale B125_check_taking_inventory B126_carry_out_taking_invent B127_report_taking_inventory B128_check_taking B129_carry_out_taking B130_report_taking B131_check_removing_it_from B132_carry_out_removing_it_f B133_report_removing_it_from B134_check_dropping B135_carry_out_dropping B136_report_dropping B137_check_putting_it_on B138_carry_out_putting_it_on B139_report_putting_it_on B140_check_inserting_it_into B141_carry_out_inserting_it_ B142_report_inserting_it_int B143_check_eating B144_carry_out_eating B145_report_eating B146_check_going B147_carry_out_going B148_report_going B149_check_entering B150_carry_out_entering B151_report_entering B152_check_exiting B153_carry_out_exiting B154_report_exiting B155_check_getting_off B156_carry_out_getting_off B157_report_getting_off B158_check_looking B159_carry_out_looking B160_report_looking B161_check_examining B162_carry_out_examining B163_report_examining B164_check_looking_under B165_carry_out_looking_under B166_report_looking_under B167_check_searching B168_carry_out_searching B169_report_searching B170_check_consulting_it_abo B171_carry_out_consulting_it B172_report_consulting_it_ab B173_check_locking_it_with B174_carry_out_locking_it_wi B175_report_locking_it_with B176_check_unlocking_it_with B177_carry_out_unlocking_it_ B178_report_unlocking_it_wit B179_check_switching_on B180_carry_out_switching_on B181_report_switching_on B182_check_switching_off B183_carry_out_switching_off B184_report_switching_off B185_check_opening B186_carry_out_opening B187_report_opening B188_check_closing B189_carry_out_closing B190_report_closing B191_check_wearing B192_carry_out_wearing B193_report_wearing B194_check_taking_off B195_carry_out_taking_off B196_report_taking_off B197_check_giving_it_to B198_carry_out_giving_it_to B199_report_giving_it_to B200_check_showing_it_to B201_carry_out_showing_it_to B202_report_showing_it_to B203_check_waking B204_carry_out_waking B205_report_waking B206_check_throwing_it_at B207_carry_out_throwing_it_a B208_report_throwing_it_at B209_check_attacking B210_carry_out_attacking B211_report_attacking B212_check_kissing B213_carry_out_kissing B214_report_kissing B215_check_answering_it_that B216_carry_out_answering_it_ B217_report_answering_it_tha B218_check_telling_it_about B219_carry_out_telling_it_ab B220_report_telling_it_about B221_check_asking_it_about B222_carry_out_asking_it_abo B223_report_asking_it_about B224_check_asking_it_for B225_carry_out_asking_it_for B226_report_asking_it_for B227_check_waiting B228_carry_out_waiting B229_report_waiting B230_check_touching B231_carry_out_touching B232_report_touching B233_check_waving B234_carry_out_waving B235_report_waving B236_check_pulling B237_carry_out_pulling B238_report_pulling B239_check_pushing B240_carry_out_pushing B241_report_pushing B242_check_turning B243_carry_out_turning B244_report_turning B245_check_pushing_it_to B246_carry_out_pushing_it_to B247_report_pushing_it_to B248_check_squeezing B249_carry_out_squeezing B250_report_squeezing B251_check_saying_yes B252_carry_out_saying_yes B253_report_saying_yes B254_check_saying_no B255_carry_out_saying_no B256_report_saying_no B257_check_burning B258_carry_out_burning B259_report_burning B260_check_waking_up B261_carry_out_waking_up B262_report_waking_up B263_check_thinking B264_carry_out_thinking B265_report_thinking B266_check_smelling B267_carry_out_smelling B268_report_smelling B269_check_listening_to B270_carry_out_listening_to B271_report_listening_to B272_check_tasting B273_carry_out_tasting B274_report_tasting B275_check_cutting B276_carry_out_cutting B277_report_cutting B278_check_jumping B279_carry_out_jumping B280_report_jumping B281_check_tying_it_to B282_carry_out_tying_it_to B283_report_tying_it_to B284_check_drinking B285_carry_out_drinking B286_report_drinking B287_check_saying_sorry B288_carry_out_saying_sorry B289_report_saying_sorry B290_check_swearing_obscenel B291_carry_out_swearing_obsc B292_report_swearing_obscene B293_check_swearing_mildly B294_carry_out_swearing_mild B295_report_swearing_mildly B296_check_swinging B297_carry_out_swinging B298_report_swinging B299_check_rubbing B300_carry_out_rubbing B301_report_rubbing B302_check_setting_it_to B303_carry_out_setting_it_to B304_report_setting_it_to B305_check_waving_hands B306_carry_out_waving_hands B307_report_waving_hands B308_check_buying B309_carry_out_buying B310_report_buying B311_check_singing B312_carry_out_singing B313_report_singing B314_check_climbing B315_carry_out_climbing B316_report_climbing B317_check_sleeping B318_carry_out_sleeping B319_report_sleeping B320_check_quitting_the_game B321_carry_out_quitting_the_ B322_report_quitting_the_gam B323_check_saving_the_game B324_carry_out_saving_the_ga B325_report_saving_the_game B326_check_restoring_the_gam B327_carry_out_restoring_the B328_report_restoring_the_ga B329_check_restarting_the_ga B330_carry_out_restarting_th B331_report_restarting_the_g B332_check_verifying_the_sto B333_carry_out_verifying_the B334_report_verifying_the_st B335_check_switching_the_sto B336_carry_out_switching_the B337_report_switching_the_st B338_check_switching_the_sto B339_carry_out_switching_the B340_report_switching_the_st B341_check_requesting_the_st B342_carry_out_requesting_th B343_report_requesting_the_s B344_check_requesting_the_sc B345_carry_out_requesting_th B346_report_requesting_the_s B347_check_preferring_abbrev B348_carry_out_preferring_ab B349_report_preferring_abbre B350_check_preferring_unabbr B351_carry_out_preferring_un B352_report_preferring_unabb B353_check_preferring_someti B354_carry_out_preferring_so B355_report_preferring_somet B356_check_switching_score_n B357_carry_out_switching_sco B358_report_switching_score_ B359_check_switching_score_n B360_carry_out_switching_sco B361_report_switching_score_ B362_check_requesting_the_pr B363_carry_out_requesting_th B364_report_requesting_the_p B365_when_fall_begins B366_when_fall_ends B367_when_spring_begins B368_when_spring_ends B369_when_winter_begins B370_when_winter_ends 0;
 
 Constant B0_procedural = EMPTY_RULEBOOK;
 Array B1_startup --> INITIALISE_MEMORY_R VIRTUAL_MACHINE_STARTUP_R SEED_RANDOM_NUMBER_GENERATOR_R UPDATE_CHRONOLOGICAL_RECORDS_R POSITION_PLAYER_IN_MODEL_R R_8 R_9 R_10 R_11 R_12 NULL; ! 10 rule(s)
@@ -20105,6 +20112,12 @@ Array B361_report_switching_score_ --> REP_SWITCH_NOTIFY_OFF_R NULL; ! 1 rule(s)
 Constant B362_check_requesting_the_pr = EMPTY_RULEBOOK;
 Array B363_carry_out_requesting_th --> ANNOUNCE_PRONOUN_MEANINGS_R NULL; ! 1 rule(s)
 Constant B364_report_requesting_the_p = EMPTY_RULEBOOK;
+Constant B365_when_fall_begins = EMPTY_RULEBOOK;
+Constant B366_when_fall_ends = EMPTY_RULEBOOK;
+Constant B367_when_spring_begins = EMPTY_RULEBOOK;
+Constant B368_when_spring_ends = EMPTY_RULEBOOK;
+Constant B369_when_winter_begins = EMPTY_RULEBOOK;
+Constant B370_when_winter_ends = EMPTY_RULEBOOK;
 
 Constant BR_0 = R_8;
 Constant BR_1 = R_9;
@@ -20371,28 +20384,28 @@ Constant BR_261 = R_296;
 Constant BR_262 = R_297;
 Constant BR_263 = R_298;
 Constant BR_264 = R_299;
-Constant BR_701 = R_8;
-Constant BR_707 = R_9;
-Constant BR_708 = R_10;
-Constant BR_709 = R_11;
-Constant BR_710 = R_12;
-Constant BR_718 = R_16;
-Constant BR_719 = R_17;
-Constant BR_721 = R_18;
-Constant BR_724 = R_21;
-Constant BR_725 = R_19;
-Constant BR_726 = R_20;
-Constant BR_730 = R_22;
-Constant BR_734 = R_23;
-Constant BR_740 = R_35;
-Constant BR_742 = R_59;
-Constant BR_743 = R_60;
-Constant BR_745 = R_61;
-Constant BR_750 = R_69;
-Constant BR_751 = R_68;
-Constant BR_753 = R_70;
-Constant BR_754 = R_91;
-Constant BR_755 = R_148;
+Constant BR_707 = R_8;
+Constant BR_713 = R_9;
+Constant BR_714 = R_10;
+Constant BR_715 = R_11;
+Constant BR_716 = R_12;
+Constant BR_724 = R_16;
+Constant BR_725 = R_17;
+Constant BR_727 = R_18;
+Constant BR_730 = R_21;
+Constant BR_731 = R_19;
+Constant BR_732 = R_20;
+Constant BR_736 = R_22;
+Constant BR_740 = R_23;
+Constant BR_746 = R_35;
+Constant BR_748 = R_59;
+Constant BR_749 = R_60;
+Constant BR_751 = R_61;
+Constant BR_756 = R_69;
+Constant BR_757 = R_68;
+Constant BR_759 = R_70;
+Constant BR_760 = R_91;
+Constant BR_761 = R_148;
 
 
 
@@ -20423,6 +20436,80 @@ if (scene_status-->0 == 1) {
             jump CScene;
         }
     }
+    if (scene_status-->1 == 1) {
+        if ((((((Global_Vars-->10) && true) == (1 && true))))) {
+            ch = true;
+            if (debug_scenes) print "[Scene 'Fall' ends]^";
+            if (GProperty(39, 2, p54_recurring)) scene_status-->1 = 0; else scene_status-->1 = 2; ProcessRulebook(WHEN_SCENE_ENDS_RB, 2);
+            ProcessRulebook(366);
+            scene_ended-->1 = the_time;
+            scene_endings-->1 = (scene_endings-->1)|2;
+            scene_latest_ending-->1 = 1;
+            if (scene_status-->3 == 0) {
+                if (debug_scenes) print "[Scene 'Winter' begins]^";
+                scene_status-->3 = 1; ProcessRulebook(WHEN_SCENE_BEGINS_RB, 4);
+                ProcessRulebook(369);
+                scene_started-->3 = the_time;
+                scene_endings-->3 = (scene_endings-->3)|1;
+                scene_latest_ending-->3 = 0;
+            }
+            jump CScene;
+        }
+    }
+    if (scene_status-->1 == 0) {
+        if (((scene_endings-->1) & 1) == 0) {
+            if (debug_scenes) print "[Scene 'Fall' begins]^";
+            scene_status-->1 = 1; ProcessRulebook(WHEN_SCENE_BEGINS_RB, 2);
+            ProcessRulebook(365);
+            scene_started-->1 = the_time;
+            scene_endings-->1 = (scene_endings-->1)|1;
+            scene_latest_ending-->1 = 0;
+        }
+    }
+    if (scene_status-->2 == 1) {
+        if ((((((Global_Vars-->10) && true) == (1 && true))))) {
+            ch = true;
+            if (debug_scenes) print "[Scene 'Spring' ends]^";
+            if (GProperty(39, 3, p54_recurring)) scene_status-->2 = 0; else scene_status-->2 = 2; ProcessRulebook(WHEN_SCENE_ENDS_RB, 3);
+            ProcessRulebook(368);
+            scene_ended-->2 = the_time;
+            scene_endings-->2 = (scene_endings-->2)|2;
+            scene_latest_ending-->2 = 1;
+            if (scene_status-->1 == 0) {
+                if (debug_scenes) print "[Scene 'Fall' begins]^";
+                scene_status-->1 = 1; ProcessRulebook(WHEN_SCENE_BEGINS_RB, 2);
+                ProcessRulebook(365);
+                scene_started-->1 = the_time;
+                scene_endings-->1 = (scene_endings-->1)|1;
+                scene_latest_ending-->1 = 0;
+            }
+            jump CScene;
+        }
+    }
+    if (scene_status-->2 == 0) {
+    }
+    if (scene_status-->3 == 1) {
+        if ((((((Global_Vars-->10) && true) == (1 && true))))) {
+            ch = true;
+            if (debug_scenes) print "[Scene 'Winter' ends]^";
+            if (GProperty(39, 4, p54_recurring)) scene_status-->3 = 0; else scene_status-->3 = 2; ProcessRulebook(WHEN_SCENE_ENDS_RB, 4);
+            ProcessRulebook(370);
+            scene_ended-->3 = the_time;
+            scene_endings-->3 = (scene_endings-->3)|2;
+            scene_latest_ending-->3 = 1;
+            if (scene_status-->2 == 0) {
+                if (debug_scenes) print "[Scene 'Spring' begins]^";
+                scene_status-->2 = 1; ProcessRulebook(WHEN_SCENE_BEGINS_RB, 3);
+                ProcessRulebook(367);
+                scene_started-->2 = the_time;
+                scene_endings-->2 = (scene_endings-->2)|1;
+                scene_latest_ending-->2 = 0;
+            }
+            jump CScene;
+        }
+    }
+    if (scene_status-->3 == 0) {
+    }
     .CScene;
     if (chs>20) ">--> The scene change machinery is stuck.";
 
@@ -20438,6 +20525,30 @@ if (scene_status-->0 == 1) {
     } else {
         if (scene_latest_ending-->0 > 0) {
             print "Scene 'Entire Game' ended";
+            print "^";
+        }
+    }
+    if (scene_status-->1 == 1) {
+        print "Scene 'Fall' playing (for ", the_time-(scene_started-->1), " mins now)^";
+    } else {
+        if (scene_latest_ending-->1 > 0) {
+            print "Scene 'Fall' ended";
+            print "^";
+        }
+    }
+    if (scene_status-->2 == 1) {
+        print "Scene 'Spring' playing (for ", the_time-(scene_started-->2), " mins now)^";
+    } else {
+        if (scene_latest_ending-->2 > 0) {
+            print "Scene 'Spring' ended";
+            print "^";
+        }
+    }
+    if (scene_status-->3 == 1) {
+        print "Scene 'Winter' playing (for ", the_time-(scene_started-->3), " mins now)^";
+    } else {
+        if (scene_latest_ending-->3 > 0) {
+            print "Scene 'Winter' ended";
             print "^";
         }
     }
@@ -21471,7 +21582,7 @@ Global MStack_Frame_Extent = 0;
 ];
 
 #IFNDEF MEMORY_ECONOMY;
-Array rulebook_var_creators --> 0 0 0 0 0 0 0 0 0 0 RBSTVC_10 0 RBSTVC_12 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+Array rulebook_var_creators --> 0 0 0 0 0 0 0 0 0 0 RBSTVC_10 0 RBSTVC_12 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
 #ENDIF;
 [  RBSTVC_10 pos state;
     if (state == 1) {
@@ -23956,6 +24067,12 @@ Array RulebookNames -->
     "check Requesting the pronoun meanings rulebook" ! 362
     "carry out Requesting the pronoun meanings rulebook" ! 363
     "report Requesting the pronoun meanings rulebook" ! 364
+    "when Fall begins rulebook" ! 365
+    "when Fall ends rulebook" ! 366
+    "when Spring begins rulebook" ! 367
+    "when Spring ends rulebook" ! 368
+    "when Winter begins rulebook" ! 369
+    "when Winter ends rulebook" ! 370
 ;
 
 
@@ -24288,95 +24405,95 @@ Array RulebookNames -->
 		if (R == SWITCH_SCORE_NOTIFY_OFF_R) { print "switch score notification off rule"; return; } ! 681, case 1
 		if (R == REP_SWITCH_NOTIFY_OFF_R) { print "standard report switching score notification off rule"; return; } ! 682, case 1
 		if (R == ANNOUNCE_PRONOUN_MEANINGS_R) { print "announce the pronoun meanings rule"; return; } ! 686, case 1
-		if (R == R_14) { print "A first turn sequence rule"; return; } ! 687, case 2
-		if (R == R_15) { print "A last turn sequence rule"; return; } ! 688, case 2
-		if (R == R_30) { print "last specific action-processing rule"; return; } ! 689, case 2
-		if (R == R_159) { print "Setting action variables for exiting"; return; } ! 690, case 2
-		if (R == R_740) { print "Before printing the banner text"; return; } ! 691, case 2
-		if (R == R_741) { print "After printing the banner text"; return; } ! 692, case 2
-		if (R == R_742) { print "Instead of taking sunlight"; return; } ! 693, case 2
-		if (R == R_743) { print "Instead of taking windows"; return; } ! 694, case 2
-		if (R == R_744) { print "Instead of taking throne room junk"; return; } ! 695, case 2
-		if (R == R_745) { print "Does the player mean entering The Throne of Hamurabi"; return; } ! 696, case 2
-		if (R == R_746) { print "Instead of going up"; return; } ! 697, case 2
-		if (R == R_747) { print "Instead of going down"; return; } ! 698, case 2
-		if (R == R_748) { print "Before going a direction when the player is on The Throne of Hamurabi"; return; } ! 699, case 2
-		if (R == R_749) { print "Instead of going a direction ( called direction intended )"; return; } ! 700, case 2
-		if (R == R_8) { print "start in the correct scenes rule"; return; } ! 701, case 1
-		if (R == POSITION_PLAYER_IN_MODEL_R) { print "position player in model world rule"; return; } ! 702, case 1
-		if (R == UPDATE_CHRONOLOGICAL_RECORDS_R) { print "update chronological records rule"; return; } ! 703, case 1
-		if (R == SEED_RANDOM_NUMBER_GENERATOR_R) { print "seed random number generator rule"; return; } ! 704, case 1
-		if (R == VIRTUAL_MACHINE_STARTUP_R) { print "virtual machine startup rule"; return; } ! 705, case 1
-		if (R == INITIALISE_MEMORY_R) { print "initialise memory rule"; return; } ! 706, case 1
-		if (R == R_9) { print "when play begins stage rule"; return; } ! 707, case 1
-		if (R == R_10) { print "fix baseline scoring rule"; return; } ! 708, case 1
-		if (R == R_11) { print "display banner rule"; return; } ! 709, case 1
-		if (R == R_12) { print "initial room description rule"; return; } ! 710, case 1
-		if (R == GENERATE_ACTION_R) { print "generate action rule"; return; } ! 711, case 1
-		if (R == PARSE_COMMAND_R) { print "parse command rule"; return; } ! 712, case 1
-		if (R == TIMED_EVENTS_R) { print "timed events rule"; return; } ! 713, case 1
-		if (R == ADVANCE_TIME_R) { print "advance time rule"; return; } ! 714, case 1
-		if (R == UPDATE_CHRONOLOGICAL_RECORDS_R) { print "update chronological records rule"; return; } ! 715, case 1
-		if (R == ADJUST_LIGHT_R) { print "adjust light rule"; return; } ! 716, case 1
-		if (R == NOTE_OBJECT_ACQUISITIONS_R) { print "note object acquisitions rule"; return; } ! 717, case 1
-		if (R == R_16) { print "notify score changes rule"; return; } ! 718, case 1
-		if (R == R_17) { print "when play ends stage rule"; return; } ! 719, case 1
-		if (R == RESURRECT_PLAYER_IF_ASKED_R) { print "resurrect player if asked rule"; return; } ! 720, case 1
-		if (R == R_18) { print "print player's obituary rule"; return; } ! 721, case 1
-		if (R == ASK_FINAL_QUESTION_R) { print "ask the final question rule"; return; } ! 722, case 1
-		if (R == DetectSceneChange) { print "scene change machinery rule"; return; } ! 723, case 1
-		if (R == R_21) { print "before stage rule"; return; } ! 724, case 1
-		if (R == R_19) { print "set pronouns from items from multiple object lists rule"; return; } ! 725, case 1
-		if (R == R_20) { print "announce items from multiple object lists rule"; return; } ! 726, case 1
-		if (R == BASIC_VISIBILITY_R) { print "basic visibility rule"; return; } ! 727, case 1
-		if (R == BASIC_ACCESSIBILITY_R) { print "basic accessibility rule"; return; } ! 728, case 1
-		if (R == CARRYING_REQUIREMENTS_R) { print "carrying requirements rule"; return; } ! 729, case 1
-		if (R == R_22) { print "instead stage rule"; return; } ! 730, case 1
-		if (R == REQUESTED_ACTIONS_REQUIRE_R) { print "requested actions require persuasion rule"; return; } ! 731, case 1
-		if (R == CARRY_OUT_REQUESTED_ACTIONS_R) { print "carry out requested actions rule"; return; } ! 732, case 1
-		if (R == DESCEND_TO_SPECIFIC_ACTION_R) { print "descend to specific action-processing rule"; return; } ! 733, case 1
-		if (R == R_23) { print "end action-processing in success rule"; return; } ! 734, case 1
-		if (R == WORK_OUT_DETAILS_OF_SPECIFIC_R) { print "work out details of specific action rule"; return; } ! 735, case 1
-		if (R == ACCESS_THROUGH_BARRIERS_R) { print "access through barriers rule"; return; } ! 736, case 1
-		if (R == CANT_REACH_INSIDE_ROOMS_R) { print "can't reach inside rooms rule"; return; } ! 737, case 1
-		if (R == CANT_REACH_INSIDE_CLOSED_R) { print "can't reach inside closed containers rule"; return; } ! 738, case 1
-		if (R == CANT_REACH_OUTSIDE_CLOSED_R) { print "can't reach outside closed containers rule"; return; } ! 739, case 1
-		if (R == R_35) { print "can't act in the dark rule"; return; } ! 740, case 1
-		if (R == STANDARD_NAME_PRINTING_R) { print "standard name printing rule"; return; } ! 741, case 1
-		if (R == R_59) { print "standard printing the plural name rule"; return; } ! 742, case 1
-		if (R == R_60) { print "standard printing a number of something rule"; return; } ! 743, case 1
-		if (R == STANDARD_CONTENTS_LISTING_R) { print "standard contents listing rule"; return; } ! 744, case 1
-		if (R == R_61) { print "look around once light available rule"; return; } ! 745, case 1
-		if (R == ENABLE_GLULX_ACCEL_R) { print "enable Glulx acceleration rule"; return; } ! 746, case 1
-		if (R == PRINT_OBITUARY_HEADLINE_R) { print "print obituary headline rule"; return; } ! 747, case 1
-		if (R == PRINT_FINAL_SCORE_R) { print "print final score rule"; return; } ! 748, case 1
-		if (R == DISPLAY_FINAL_STATUS_LINE_R) { print "display final status line rule"; return; } ! 749, case 1
-		if (R == R_69) { print "print the final question rule"; return; } ! 750, case 1
-		if (R == R_68) { print "print the final prompt rule"; return; } ! 751, case 1
-		if (R == READ_FINAL_ANSWER_R) { print "read the final answer rule"; return; } ! 752, case 1
-		if (R == R_70) { print "standard respond to final question rule"; return; } ! 753, case 1
-		if (R == R_91) { print "can't take component parts rule"; return; } ! 754, case 1
-		if (R == R_148) { print "find what to enter rule"; return; } ! 755, case 1
-		if (R == QUIT_THE_GAME_R) { print "quit the game rule"; return; } ! 756, case 1
-		if (R == SAVE_THE_GAME_R) { print "save the game rule"; return; } ! 757, case 1
-		if (R == RESTORE_THE_GAME_R) { print "restore the game rule"; return; } ! 758, case 1
-		if (R == RESTART_THE_GAME_R) { print "restart the game rule"; return; } ! 759, case 1
-		if (R == VERIFY_THE_STORY_FILE_R) { print "verify the story file rule"; return; } ! 760, case 1
-		if (R == SWITCH_TRANSCRIPT_ON_R) { print "switch the story transcript on rule"; return; } ! 761, case 1
-		if (R == SWITCH_TRANSCRIPT_OFF_R) { print "switch the story transcript off rule"; return; } ! 762, case 1
-		if (R == ANNOUNCE_STORY_FILE_VERSION_R) { print "announce the story file version rule"; return; } ! 763, case 1
-		if (R == ANNOUNCE_SCORE_R) { print "announce the score rule"; return; } ! 764, case 1
-		if (R == PREFER_ABBREVIATED_R) { print "prefer abbreviated room descriptions rule"; return; } ! 765, case 1
-		if (R == REP_PREFER_ABBREVIATED_R) { print "standard report preferring abbreviated room descriptions rule"; return; } ! 766, case 1
-		if (R == PREFER_UNABBREVIATED_R) { print "prefer unabbreviated room descriptions rule"; return; } ! 767, case 1
-		if (R == REP_PREFER_UNABBREVIATED_R) { print "standard report preferring unabbreviated room descriptions rule"; return; } ! 768, case 1
-		if (R == PREFER_SOMETIMES_ABBREVIATED_R) { print "prefer sometimes abbreviated room descriptions rule"; return; } ! 769, case 1
-		if (R == REP_PREFER_SOMETIMES_ABBR_R) { print "standard report preferring sometimes abbreviated room descriptions rule"; return; } ! 770, case 1
-		if (R == SWITCH_SCORE_NOTIFY_ON_R) { print "switch score notification on rule"; return; } ! 771, case 1
-		if (R == REP_SWITCH_NOTIFY_ON_R) { print "standard report switching score notification on rule"; return; } ! 772, case 1
-		if (R == SWITCH_SCORE_NOTIFY_OFF_R) { print "switch score notification off rule"; return; } ! 773, case 1
-		if (R == REP_SWITCH_NOTIFY_OFF_R) { print "standard report switching score notification off rule"; return; } ! 774, case 1
-		if (R == ANNOUNCE_PRONOUN_MEANINGS_R) { print "announce the pronoun meanings rule"; return; } ! 775, case 1
+		if (R == R_14) { print "A first turn sequence rule"; return; } ! 693, case 2
+		if (R == R_15) { print "A last turn sequence rule"; return; } ! 694, case 2
+		if (R == R_30) { print "last specific action-processing rule"; return; } ! 695, case 2
+		if (R == R_159) { print "Setting action variables for exiting"; return; } ! 696, case 2
+		if (R == R_740) { print "Before printing the banner text"; return; } ! 697, case 2
+		if (R == R_741) { print "After printing the banner text"; return; } ! 698, case 2
+		if (R == R_742) { print "Instead of taking sunlight"; return; } ! 699, case 2
+		if (R == R_743) { print "Instead of taking windows"; return; } ! 700, case 2
+		if (R == R_744) { print "Instead of taking throne room junk"; return; } ! 701, case 2
+		if (R == R_745) { print "Does the player mean entering The Throne of Hamurabi"; return; } ! 702, case 2
+		if (R == R_746) { print "Instead of going up"; return; } ! 703, case 2
+		if (R == R_747) { print "Instead of going down"; return; } ! 704, case 2
+		if (R == R_748) { print "Before going a direction when the player is on The Throne of Hamurabi"; return; } ! 705, case 2
+		if (R == R_749) { print "Instead of going a direction ( called direction intended )"; return; } ! 706, case 2
+		if (R == R_8) { print "start in the correct scenes rule"; return; } ! 707, case 1
+		if (R == POSITION_PLAYER_IN_MODEL_R) { print "position player in model world rule"; return; } ! 708, case 1
+		if (R == UPDATE_CHRONOLOGICAL_RECORDS_R) { print "update chronological records rule"; return; } ! 709, case 1
+		if (R == SEED_RANDOM_NUMBER_GENERATOR_R) { print "seed random number generator rule"; return; } ! 710, case 1
+		if (R == VIRTUAL_MACHINE_STARTUP_R) { print "virtual machine startup rule"; return; } ! 711, case 1
+		if (R == INITIALISE_MEMORY_R) { print "initialise memory rule"; return; } ! 712, case 1
+		if (R == R_9) { print "when play begins stage rule"; return; } ! 713, case 1
+		if (R == R_10) { print "fix baseline scoring rule"; return; } ! 714, case 1
+		if (R == R_11) { print "display banner rule"; return; } ! 715, case 1
+		if (R == R_12) { print "initial room description rule"; return; } ! 716, case 1
+		if (R == GENERATE_ACTION_R) { print "generate action rule"; return; } ! 717, case 1
+		if (R == PARSE_COMMAND_R) { print "parse command rule"; return; } ! 718, case 1
+		if (R == TIMED_EVENTS_R) { print "timed events rule"; return; } ! 719, case 1
+		if (R == ADVANCE_TIME_R) { print "advance time rule"; return; } ! 720, case 1
+		if (R == UPDATE_CHRONOLOGICAL_RECORDS_R) { print "update chronological records rule"; return; } ! 721, case 1
+		if (R == ADJUST_LIGHT_R) { print "adjust light rule"; return; } ! 722, case 1
+		if (R == NOTE_OBJECT_ACQUISITIONS_R) { print "note object acquisitions rule"; return; } ! 723, case 1
+		if (R == R_16) { print "notify score changes rule"; return; } ! 724, case 1
+		if (R == R_17) { print "when play ends stage rule"; return; } ! 725, case 1
+		if (R == RESURRECT_PLAYER_IF_ASKED_R) { print "resurrect player if asked rule"; return; } ! 726, case 1
+		if (R == R_18) { print "print player's obituary rule"; return; } ! 727, case 1
+		if (R == ASK_FINAL_QUESTION_R) { print "ask the final question rule"; return; } ! 728, case 1
+		if (R == DetectSceneChange) { print "scene change machinery rule"; return; } ! 729, case 1
+		if (R == R_21) { print "before stage rule"; return; } ! 730, case 1
+		if (R == R_19) { print "set pronouns from items from multiple object lists rule"; return; } ! 731, case 1
+		if (R == R_20) { print "announce items from multiple object lists rule"; return; } ! 732, case 1
+		if (R == BASIC_VISIBILITY_R) { print "basic visibility rule"; return; } ! 733, case 1
+		if (R == BASIC_ACCESSIBILITY_R) { print "basic accessibility rule"; return; } ! 734, case 1
+		if (R == CARRYING_REQUIREMENTS_R) { print "carrying requirements rule"; return; } ! 735, case 1
+		if (R == R_22) { print "instead stage rule"; return; } ! 736, case 1
+		if (R == REQUESTED_ACTIONS_REQUIRE_R) { print "requested actions require persuasion rule"; return; } ! 737, case 1
+		if (R == CARRY_OUT_REQUESTED_ACTIONS_R) { print "carry out requested actions rule"; return; } ! 738, case 1
+		if (R == DESCEND_TO_SPECIFIC_ACTION_R) { print "descend to specific action-processing rule"; return; } ! 739, case 1
+		if (R == R_23) { print "end action-processing in success rule"; return; } ! 740, case 1
+		if (R == WORK_OUT_DETAILS_OF_SPECIFIC_R) { print "work out details of specific action rule"; return; } ! 741, case 1
+		if (R == ACCESS_THROUGH_BARRIERS_R) { print "access through barriers rule"; return; } ! 742, case 1
+		if (R == CANT_REACH_INSIDE_ROOMS_R) { print "can't reach inside rooms rule"; return; } ! 743, case 1
+		if (R == CANT_REACH_INSIDE_CLOSED_R) { print "can't reach inside closed containers rule"; return; } ! 744, case 1
+		if (R == CANT_REACH_OUTSIDE_CLOSED_R) { print "can't reach outside closed containers rule"; return; } ! 745, case 1
+		if (R == R_35) { print "can't act in the dark rule"; return; } ! 746, case 1
+		if (R == STANDARD_NAME_PRINTING_R) { print "standard name printing rule"; return; } ! 747, case 1
+		if (R == R_59) { print "standard printing the plural name rule"; return; } ! 748, case 1
+		if (R == R_60) { print "standard printing a number of something rule"; return; } ! 749, case 1
+		if (R == STANDARD_CONTENTS_LISTING_R) { print "standard contents listing rule"; return; } ! 750, case 1
+		if (R == R_61) { print "look around once light available rule"; return; } ! 751, case 1
+		if (R == ENABLE_GLULX_ACCEL_R) { print "enable Glulx acceleration rule"; return; } ! 752, case 1
+		if (R == PRINT_OBITUARY_HEADLINE_R) { print "print obituary headline rule"; return; } ! 753, case 1
+		if (R == PRINT_FINAL_SCORE_R) { print "print final score rule"; return; } ! 754, case 1
+		if (R == DISPLAY_FINAL_STATUS_LINE_R) { print "display final status line rule"; return; } ! 755, case 1
+		if (R == R_69) { print "print the final question rule"; return; } ! 756, case 1
+		if (R == R_68) { print "print the final prompt rule"; return; } ! 757, case 1
+		if (R == READ_FINAL_ANSWER_R) { print "read the final answer rule"; return; } ! 758, case 1
+		if (R == R_70) { print "standard respond to final question rule"; return; } ! 759, case 1
+		if (R == R_91) { print "can't take component parts rule"; return; } ! 760, case 1
+		if (R == R_148) { print "find what to enter rule"; return; } ! 761, case 1
+		if (R == QUIT_THE_GAME_R) { print "quit the game rule"; return; } ! 762, case 1
+		if (R == SAVE_THE_GAME_R) { print "save the game rule"; return; } ! 763, case 1
+		if (R == RESTORE_THE_GAME_R) { print "restore the game rule"; return; } ! 764, case 1
+		if (R == RESTART_THE_GAME_R) { print "restart the game rule"; return; } ! 765, case 1
+		if (R == VERIFY_THE_STORY_FILE_R) { print "verify the story file rule"; return; } ! 766, case 1
+		if (R == SWITCH_TRANSCRIPT_ON_R) { print "switch the story transcript on rule"; return; } ! 767, case 1
+		if (R == SWITCH_TRANSCRIPT_OFF_R) { print "switch the story transcript off rule"; return; } ! 768, case 1
+		if (R == ANNOUNCE_STORY_FILE_VERSION_R) { print "announce the story file version rule"; return; } ! 769, case 1
+		if (R == ANNOUNCE_SCORE_R) { print "announce the score rule"; return; } ! 770, case 1
+		if (R == PREFER_ABBREVIATED_R) { print "prefer abbreviated room descriptions rule"; return; } ! 771, case 1
+		if (R == REP_PREFER_ABBREVIATED_R) { print "standard report preferring abbreviated room descriptions rule"; return; } ! 772, case 1
+		if (R == PREFER_UNABBREVIATED_R) { print "prefer unabbreviated room descriptions rule"; return; } ! 773, case 1
+		if (R == REP_PREFER_UNABBREVIATED_R) { print "standard report preferring unabbreviated room descriptions rule"; return; } ! 774, case 1
+		if (R == PREFER_SOMETIMES_ABBREVIATED_R) { print "prefer sometimes abbreviated room descriptions rule"; return; } ! 775, case 1
+		if (R == REP_PREFER_SOMETIMES_ABBR_R) { print "standard report preferring sometimes abbreviated room descriptions rule"; return; } ! 776, case 1
+		if (R == SWITCH_SCORE_NOTIFY_ON_R) { print "switch score notification on rule"; return; } ! 777, case 1
+		if (R == REP_SWITCH_NOTIFY_ON_R) { print "standard report switching score notification on rule"; return; } ! 778, case 1
+		if (R == SWITCH_SCORE_NOTIFY_OFF_R) { print "switch score notification off rule"; return; } ! 779, case 1
+		if (R == REP_SWITCH_NOTIFY_OFF_R) { print "standard report switching score notification off rule"; return; } ! 780, case 1
+		if (R == ANNOUNCE_PRONOUN_MEANINGS_R) { print "announce the pronoun meanings rule"; return; } ! 781, case 1
 
 		print "(nameless rule at address ", R, ")";
 	}
@@ -26595,39 +26712,47 @@ Verb meta 'tree'
    rfalse;
 ];
 [ text_routine_0;
-say__p=1;ParaContent();  print (PrintText) SC_66; ParaContent();  print (PrintShortName) I90_carpets; ParaContent();  print (PrintText) SC_67; ParaContent();  print (PrintShortName) I91_furniture; ParaContent();  print (PrintText) SC_68; ParaContent();  print (PrintShortName) I92_ornaments; ParaContent();  print (PrintText) SC_69; ParaContent();  print (PrintShortName) I93_stone_floor; ParaContent();  print (PrintText) SC_70; ParaContent();  print (PrintShortName) I94_sunlight; ParaContent();  print (PrintText) SC_71; ParaContent();  print (PrintShortName) I95_high_windows; ParaContent();  print (PrintText) SC_72;  .L_Say50; .L_SayX50;
+say__p=1;ParaContent();  print (PrintText) SC_68; ParaContent();  print (PrintShortName) I90_carpets; ParaContent();  print (PrintText) SC_69; ParaContent();  print (PrintShortName) I91_furniture; ParaContent();  print (PrintText) SC_70; ParaContent();  print (PrintShortName) I92_ornaments; ParaContent();  print (PrintText) SC_71; ParaContent();  print (PrintShortName) I93_stone_floor; ParaContent();  print (PrintText) SC_72; ParaContent();  print (PrintShortName) I94_sunlight; ParaContent();  print (PrintText) SC_73; ParaContent();  print (PrintShortName) I95_high_windows; ParaContent();  print (PrintText) SC_74;  .L_Say50; .L_SayX50;
     rtrue;
 ];
 
-[ text_routine_1;blockv_stack-->(blockv_sp+0) = BlkValueCreate(LIST_OF_TY,0,KD3_list_of_things);
-    blockv_sp = blockv_sp + 1;
-    blockv_stack-->(blockv_sp++) = R_SHELL_0(blockv_sp-1);
-    blockv_sp = blockv_sp - 2;
+[ text_routine_1;blockv_stack-->(blockv_sp+1) = BlkValueCreate(LIST_OF_TY,0,KD3_list_of_things);
+    blockv_stack-->(blockv_sp+0) = BlkValueCreate(LIST_OF_TY,0,KD3_list_of_things);
+    blockv_sp = blockv_sp + 2;
+    blockv_stack-->(blockv_sp++) = R_SHELL_0(blockv_sp-2);
+    blockv_sp = blockv_sp - 3;
+    BlkFree(blockv_stack-->(blockv_sp+1));
     BlkFree(blockv_stack-->(blockv_sp+0));
-    return blockv_stack-->(blockv_sp+1);
+    return blockv_stack-->(blockv_sp+2);
 ];
 [ R_SHELL_0 I7BASPL ;
-say__p=1;ParaContent();  print (PrintText) SC_73; ParaContent();  LIST_OF_TY_Say( LIST_OF_TY_Desc((blockv_stack-->(I7BASPL+0)), Prop_25, 9) , 2); ParaContent();  print (PrintText) SC_74;  .L_Say51; .L_SayX51;
+say__p=1;ParaContent();  print (PrintText) SC_75; 
+	if (~~(((((Adj_16_t1_v30( LIST_OF_TY_Desc((blockv_stack-->(I7BASPL+0)), Prop_25, 9) ))))))) jump L_Say51;
+		ParaContent();  print (PrintText) SC_76; 
+	jump L_SayX51; .L_Say51;
+		ParaContent();  print (PrintText) SC_77; ParaContent();  LIST_OF_TY_Say( LIST_OF_TY_Desc((blockv_stack-->(I7BASPL+1)), Prop_26, 9) , 2); 
+	.L_Say52; .L_SayX51;
+		ParaContent();  print (PrintText) SC_78;  .L_Say53; .L_SayX52;
     rtrue;
 ];
 
 [ text_routine_2;
-say__p=1;ParaContent();  print (PrintText) SC_75; ParaContent();  print (PrintShortName) I103_depictions; ParaContent();  print (PrintText) SC_76;  .L_Say52; .L_SayX52;
+say__p=1;ParaContent();  print (PrintText) SC_79; ParaContent();  print (PrintShortName) I103_depictions; ParaContent();  print (PrintText) SC_80;  .L_Say54; .L_SayX53;
     rtrue;
 ];
 
 [ text_routine_3;
-say__p=1;ParaContent();  print (PrintText) SC_77; ParaContent();  print (PrintShortName) I104_laces; ParaContent();  print (PrintText) SC_78;  .L_Say53; .L_SayX53;
+say__p=1;ParaContent();  print (PrintText) SC_81; ParaContent();  print (PrintShortName) I104_laces; ParaContent();  print (PrintText) SC_82;  .L_Say55; .L_SayX54;
     rtrue;
 ];
 
 [ text_routine_4;
-say__p=1;ParaContent();  print (PrintText) SC_79; ParaContent();  print (PrintShortName) I105_precious_stones; ParaContent();  print (PrintText) SC_80;  .L_Say54; .L_SayX54;
+say__p=1;ParaContent();  print (PrintText) SC_83; ParaContent();  print (PrintShortName) I105_precious_stones; ParaContent();  print (PrintText) SC_84;  .L_Say56; .L_SayX55;
     rtrue;
 ];
 
 [ text_routine_5;
-say__p=1;ParaContent();  print (PrintText) SC_81; ParaContent();  print (a) I106_sparkling_sapphire; ParaContent();  print (PrintText) SC_82; ParaContent();  print (PrintShortName) I107_mystic_writing; ParaContent();  print (PrintText) SC_83; ParaContent();  print (PrintShortName) I108_arcane_symbols; ParaContent();  print (PrintText) SC_64;  .L_Say55; .L_SayX55;
+say__p=1;ParaContent();  print (PrintText) SC_85; ParaContent();  print (a) I106_sparkling_sapphire; ParaContent();  print (PrintText) SC_86; ParaContent();  print (PrintShortName) I107_mystic_writing; ParaContent();  print (PrintText) SC_87; ParaContent();  print (PrintShortName) I108_arcane_symbols; ParaContent();  print (PrintText) SC_66;  .L_Say57; .L_SayX56;
     rtrue;
 ];
 
@@ -26641,17 +26766,17 @@ say__p=1;ParaContent();  print (PrintText) SC_81; ParaContent();  print (a) I106
     return blockv_stack-->(blockv_sp+2);
 ];
 [ R_SHELL_1 I7BASPL ;
-say__p=1;ParaContent();  print (PrintText) SC_84; ParaContent();  LIST_OF_TY_Say( LIST_OF_TY_Desc((blockv_stack-->(I7BASPL+0)), Prop_26, 9) , 3); ParaContent();  print (PrintText) SC_85; ParaContent();  LIST_OF_TY_Say( LIST_OF_TY_Desc((blockv_stack-->(I7BASPL+1)), Prop_27, 9) , 3); ParaContent();  print (PrintText) SC_64;  .L_Say56; .L_SayX56;
+say__p=1;ParaContent();  print (PrintText) SC_88; ParaContent();  LIST_OF_TY_Say( LIST_OF_TY_Desc((blockv_stack-->(I7BASPL+0)), Prop_27, 9) , 3); ParaContent();  print (PrintText) SC_89; ParaContent();  LIST_OF_TY_Say( LIST_OF_TY_Desc((blockv_stack-->(I7BASPL+1)), Prop_28, 9) , 3); ParaContent();  print (PrintText) SC_66;  .L_Say58; .L_SayX57;
     rtrue;
 ];
 
 [ text_routine_7;
-say__p=1;ParaContent();  print (PrintText) SC_86; ParaContent();  print (PrintShortName) I116_leather_belt; ParaContent();  print (PrintText) SC_87;  .L_Say57; .L_SayX57;
+say__p=1;ParaContent();  print (PrintText) SC_90; ParaContent();  print (PrintShortName) I116_leather_belt; ParaContent();  print (PrintText) SC_91;  .L_Say59; .L_SayX58;
     rtrue;
 ];
 
 [ text_routine_8;
-say__p=1;ParaContent();  print (PrintText) SC_88; ParaContent();  print (PrintShortName) I117_scar; ParaContent();  print (PrintText) SC_89;  .L_Say58; .L_SayX58;
+say__p=1;ParaContent();  print (PrintText) SC_92; ParaContent();  print (PrintShortName) I117_scar; ParaContent();  print (PrintText) SC_93;  .L_Say60; .L_SayX59;
     rtrue;
 ];
 
@@ -28734,8 +28859,87 @@ Array Rel_Record_65 -->
 ];
 
 ! Abstraction for set of x such that:
-! [ thing(x) & is('steward', WearerOf(x)) ]
+! [ thing(x) & is('player', WearerOf(x)) ]
 [ Prop_26 reason x x_ix total counter selection best best_with;
+    if (reason >= 0) { x = reason; reason = -1; }
+    switch (reason) {
+        -6: ! Find the extremal x satisfying:
+            if (property_loop_sign>0) best=MIN_NEGATIVE_NUMBER;
+            else best=MAX_POSITIVE_NUMBER;
+            objectloop (x in player) if (WearerOf(x)==parent(x)){
+                if ((x ofclass K2_thing)){
+                    if (property_loop_sign>0) {
+                        if (x.property_to_be_totalled >= best) {
+                            best = x.property_to_be_totalled;
+                            best_with = x;
+                        }
+                    } else {
+                        if (x.property_to_be_totalled <= best) {
+                            best = x.property_to_be_totalled;
+                            best_with = x;
+                        }
+                    }
+                }
+                .NextOuterLoop_3;
+            }
+            return best_with;
+        -5: ! Find a total property value over all x satisfying:
+            objectloop (x in player) if (WearerOf(x)==parent(x)){
+                if ((x ofclass K2_thing)){
+                    total = total + x.property_to_be_totalled;
+                    jump NextOuterLoop_6;
+                }
+                .NextOuterLoop_6;
+            }
+            return total;
+        -4: ! Find a random x satisfying:
+            selection = -1;
+            while (true) {
+                counter = 0;
+                objectloop (x in player) if (WearerOf(x)==parent(x)){
+                    if ((x ofclass K2_thing)){
+                        counter++;
+                        if (counter == selection) return x;
+                        jump NextOuterLoop_7;
+                    }
+                    .NextOuterLoop_7;
+                }
+                if ((counter == 0) || (selection >= 0)) return nothing;
+                selection = random(counter);
+            }
+        -3: ! How many x satisfy this?
+            objectloop (x in player) if (WearerOf(x)==parent(x)){
+                if ((x ofclass K2_thing)){
+                    counter++;
+                    jump NextOuterLoop_5;
+                }
+                .NextOuterLoop_5;
+            }
+            return counter;
+        -2: ! Find next x satisfying:
+            if (x_ix > 0) {
+                x_ix--;
+                jump NextOuterLoop_4;
+            }
+            if (x) jump NextOuterLoop_4;
+            objectloop (x in player) if (WearerOf(x)==parent(x)){
+                if ((x ofclass K2_thing)){
+                    return x;
+                }
+                .NextOuterLoop_4;
+            }
+            return nothing;
+        -1: ! True or false?
+            if ((x ofclass K2_thing) && (player == WearerOf(x))){
+                rtrue;
+            }
+            rfalse;
+    }
+];
+
+! Abstraction for set of x such that:
+! [ thing(x) & is('steward', WearerOf(x)) ]
+[ Prop_27 reason x x_ix total counter selection best best_with;
     if (reason >= 0) { x = reason; reason = -1; }
     switch (reason) {
         -6: ! Find the extremal x satisfying:
@@ -28814,7 +29018,7 @@ Array Rel_Record_65 -->
 
 ! Abstraction for set of x such that:
 ! [ thing(x) & is('steward', CarrierOf(x)) ]
-[ Prop_27 reason x x_ix total counter selection best best_with;
+[ Prop_28 reason x x_ix total counter selection best best_with;
     if (reason >= 0) { x = reason; reason = -1; }
     switch (reason) {
         -6: ! Find the extremal x satisfying:
@@ -28921,56 +29125,58 @@ Array ConstantListPointers -->
  0 0;
 
 Constant SC_45 = " ";
-Constant SC_48 = " 2012 Bart Massey; based on David Ahl's famous 1978 BASIC game HAMURABI, which was in turn a port of Doug Dyment's 1968 FOCAL game ";
-Constant SC_69 = " adorn the richly tiled ";
-Constant SC_78 = " and precious ornamentation.";
-Constant SC_83 = " and with ";
-Constant SC_71 = " filters in through various ";
-Constant SC_63 = " here";
-Constant SC_76 = " of the glory of Hamurabi.";
-Constant SC_53 = " or ";
+Constant SC_48 = " 2012 Bart Massey; based on David Ahl's famous 1978 BASIC game ";
+Constant SC_71 = " adorn the richly tiled ";
+Constant SC_82 = " and precious ornamentation.";
+Constant SC_87 = " and with ";
+Constant SC_73 = " filters in through various ";
+Constant SC_65 = " here";
+Constant SC_80 = " of the glory of Hamurabi.";
+Constant SC_55 = " or ";
 Constant SC_44 = " part of the room later.";
-Constant SC_58 = " you ";
+Constant SC_50 = " which was in turn a port of Doug Dyment's 1968 FOCAL game ";
+Constant SC_60 = " you ";
 Constant SC_31 = "(standing)";
-Constant SC_54 = ", ";
-Constant SC_68 = ", and gold accessories and ";
+Constant SC_56 = ", ";
+Constant SC_70 = ", and gold accessories and ";
 Constant SC_41 = ", but you become distracted by the contemplation of your own greatness, and fall still.";
-Constant SC_72 = ", contrasting pleasantly with the dim, cool surroundings.";
-Constant SC_67 = ", rich wood ";
-Constant SC_87 = ", this garment is otherwise unadorned.";
-Constant SC_80 = ", this golden crown rests easy on the head of the Great king.";
-Constant SC_52 = ",";
-Constant SC_82 = ". It is adorned with ";
-Constant SC_89 = ". The Steward is evidently not above striking that which needs striking.";
-Constant SC_70 = ". Warm natural ";
-Constant SC_74 = ". You are clearly a destined ruler.";
-Constant SC_64 = ".";
+Constant SC_74 = ", contrasting pleasantly with the dim, cool surroundings.";
+Constant SC_69 = ", rich wood ";
+Constant SC_91 = ", this garment is otherwise unadorned.";
+Constant SC_84 = ", this golden crown rests easy on the head of the Great king.";
+Constant SC_54 = ",";
+Constant SC_86 = ". It is adorned with ";
+Constant SC_93 = ". The Steward is evidently not above striking that which needs striking.";
+Constant SC_72 = ". Warm natural ";
+Constant SC_78 = ". You, Hamurabi, are clearly a destined ruler.";
+Constant SC_66 = ".";
 Constant SC_30 = ": ";
-Constant SC_65 = ":";
-Constant SC_85 = "; he carries ";
-Constant SC_55 = "> ";
+Constant SC_67 = ":";
+Constant SC_89 = "; he carries ";
+Constant SC_57 = "> ";
 Constant SC_24 = ">";
-Constant SC_51 = "?";
+Constant SC_53 = "?";
 Constant SC_2 = "A socioeconomic simulation";
 Constant SC_3 = "Bart Massey";
 Constant SC_16 = "Beautiful, and glowing with all the colors of the rainbow. Who knows what distant land these radiant gems once decorated?";
 Constant SC_47 = "Copyright ";
-Constant SC_79 = "Dotted with ";
+Constant SC_83 = "Dotted with ";
 Constant SC_15 = "Gilt and finely-wrought reliefs of battle and of judgement, of honor and of power.";
-Constant SC_77 = "Gold and leather, with high ";
-Constant SC_46 = "Govern ancient Sumer for 10 short years...";
-Constant SC_57 = "In ";
+Constant SC_81 = "Gold and leather, with high ";
+Constant SC_46 = "Govern ancient Sumer for 10 years...";
+Constant SC_49 = "HAMURABI,";
+Constant SC_59 = "In ";
 Constant SC_12 = "In this place, in this time, books have an almost palpable power. This one, for instance, chronicles the history of the Kingdom of Sumer: its population and food supply, its immigration and death, its land and its inhabitants all the way down to the rats in the granaries.";
 Constant SC_21 = "Intricately wrought, and in good condition. A respectable garment for a respectable man.";
 Constant SC_22 = "Just a scratch, but fraught with meaning.";
 Constant SC_33 = "No glass. No frame. Just a hole. You take the window, but only in the abstract sense of possession; the window's emptiness is now yours.";
-Constant SC_59 = "On ";
+Constant SC_61 = "On ";
 Constant SC_28 = "QUIT";
 Constant SC_25 = "RESTART";
 Constant SC_26 = "RESTORE a saved game";
-Constant SC_66 = "Stone splendor stretches upward around your throne in this vast and echoing hall. Soft linen ";
+Constant SC_68 = "Stone splendor stretches upward around your throne in this vast and echoing hall. Soft linen ";
 Constant SC_23 = "The Annual Journal's pages are sheets of purest gold, embossed by stylus with a record of the history of Sumer over a year's time.";
-Constant SC_49 = "The Sumer Game.";
+Constant SC_51 = "The Sumer Game.";
 Constant SC_18 = "The meaning is unclear, but the power of these runes is implicit. Let none brook the wrath of the great Hamurabi!";
 Constant SC_6 = "The shafts of sunlight adorn the Throne Room with an appropriate grace";
 Constant SC_19 = "The symbols tell the story of the greatness of Hamurabi, for those with the wit to read it.";
@@ -28979,23 +29185,25 @@ Constant SC_37 = "There's nothing down there you want. You continue to work.";
 Constant SC_11 = "These sandals are well-made but well-worn, evidently the property of a Steward who has walked Sumer many times in the course of his duties.";
 Constant SC_38 = "These things have resided here for a thousand years. You leave them to reside a thousand more.";
 Constant SC_14 = "This clever wrought-gold hook clips the edges of the skirt together reliably.";
-Constant SC_88 = "This elegant ebony staff reflects its utilitarian roots in a well-patched ";
-Constant SC_75 = "This gold, bronze and iron chestplate is wrought with ";
+Constant SC_92 = "This elegant ebony staff reflects its utilitarian roots in a well-patched ";
+Constant SC_79 = "This gold, bronze and iron chestplate is wrought with ";
 Constant SC_9 = "This is a simple linen garment, but the weave is incredibly fine and the needlework is impeccable. A stylish gold clasp closes the garment at the waist. Understated, but fit for a king.";
-Constant SC_84 = "This is the prime servant of The King; the man charged with carrying out the policies of Sumer. He is wearing ";
+Constant SC_88 = "This is the prime servant of The King; the man charged with carrying out the policies of Sumer. He is wearing ";
 Constant SC_8 = "This majestic gold and iron seat stands three rods high.";
 Constant SC_17 = "This sapphire is the size of a plover's egg, and sparkles like a diamond in the night sky.";
-Constant SC_81 = "This tall gold rod is capped with ";
+Constant SC_85 = "This tall gold rod is capped with ";
 Constant SC_13 = "This three-sided iron tool has an angular tip. It is well-suited to embossing and inscription.";
 Constant SC_20 = "This wedge-shaped tip makes an angular mark.";
-Constant SC_86 = "Tied at the waist with a fine braided ";
+Constant SC_90 = "Tied at the waist with a fine braided ";
 Constant SC_29 = "UNDO the last command";
 Constant SC_4 = "Very beautiful, and very appropriate to the space.";
-Constant SC_50 = "Would you like to ";
+Constant SC_52 = "Would you like to ";
 Constant SC_32 = "Wouldn't it be nice to be able to pocket some sunlight for the dark nights and cold winters? But it is not to be. The tighter you squeeze, the more it slips through your fingers.";
-Constant SC_56 = "You ";
+Constant SC_58 = "You ";
 Constant SC_34 = "You cast your eyes up toward the Sumerian sun. For a moment, you imagine yourself as an egret, flying free in the wind. Sighing, you return to your duties as King.";
-Constant SC_73 = "You consider your stature, your grace and your excellence. You consider your garments: ";
+Constant SC_77 = "You consider your garments: ";
+Constant SC_76 = "You consider your magnificent unclothed form";
+Constant SC_75 = "You consider your stature, your grace and your excellence. ";
 Constant SC_42 = "You decide that you can't leave now; there is too much to be done.";
 Constant SC_36 = "You dream of going down among the people: of becoming one of them, merely a cog in the vast machine of Sumer. Then you consider your position. Being a near-deity living in absurd luxury is, on reflection, a better course. You remain where you are.";
 Constant SC_43 = "You make a mental note to check out the ";
@@ -29003,9 +29211,9 @@ Constant SC_35 = "You shake your head at the obstinacy of your obligations, and 
 Constant SC_40 = "You start to head ";
 Constant SC_39 = "You wander aimlessly around the Throne Room. So hard to concentrate. Oh well: that is the kind of thing, after all, that your Steward does admirably.";
 Constant SC_10 = "Your Steward awaits your commands with quiet dignity.";
-Constant SC_61 = "also ";
-Constant SC_60 = "can ";
-Constant SC_62 = "see ";
+Constant SC_63 = "also ";
+Constant SC_62 = "can ";
+Constant SC_64 = "see ";
 Constant SC_27 = "see some suggestions for AMUSING things to do";
 Constant SC_5 = "the";
 

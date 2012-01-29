@@ -2,9 +2,9 @@
 
 The story headline is "A socioeconomic simulation".
 
-Before printing the banner text, say "Govern ancient Sumer for 10 short years...[paragraph break]"
+Before printing the banner text, say "Govern ancient Sumer for 10 years...[paragraph break]"
 
-After printing the banner text: say "Copyright © 2012 Bart Massey; based on David Ahl's famous 1978 BASIC game HAMURABI, which was in turn a port of Doug Dyment's 1968 FOCAL game [italic type]The Sumer Game.[roman type][paragraph break]".
+After printing the banner text: say "Copyright © 2012 Bart Massey; based on David Ahl's famous 1978 BASIC game [italic type]HAMURABI,[roman type] which was in turn a port of Doug Dyment's 1968 FOCAL game [italic type]The Sumer Game.[roman type][paragraph break]".
 
 The current year is a number that varies. The current year is 10.
 
@@ -28,13 +28,13 @@ An enterable supporter called The Throne of Hamurabi is scenery in The Throne Ro
 
 Section - Hamurabi the Player
 
-The description of the player is "You consider your stature, your grace and your excellence. You consider your garments: [list of things worn by the player with definite articles]. You are clearly a destined ruler." The player is on The Throne of Hamurabi. He is wearing a linen skirt, chestplate, golden sandals and an ornate crown. He carries The Rod of Hamurabi. 
+The description of the player is "You consider your stature, your grace and your excellence. [if the list of things worn by the player is empty]You consider your magnificent unclothed form[else]You consider your garments: [list of things worn by the player with definite articles][end if]. You, Hamurabi, are clearly a destined ruler." The player is on The Throne of Hamurabi. He is wearing a linen skirt, chestplate, golden sandals and an ornate crown. He carries The Rod of Hamurabi. 
 
 The description of the skirt is "This is a simple linen garment, but the weave is incredibly fine and the needlework is impeccable. A stylish gold clasp closes the garment at the waist. Understated, but fit for a king." The description of the chestplate is "This gold, bronze and iron chestplate is wrought with [depictions] of the glory of Hamurabi." The description of the golden sandals is "Gold and leather, with high [laces] and precious ornamentation." The description of the crown is "Dotted with [precious stones], this golden crown rests easy on the head of the Great king." The description of the Rod is "This tall gold rod is capped with [a sparkling sapphire]. It is adorned with [mystic writing] and with [arcane symbols]."
 
 The gold clasp is part of the skirt. The description is "This clever wrought-gold hook clips the edges of the skirt together reliably."
 
-A thing called depictions is part of the chestplate. The description is "Gilt and finely-wrought reliefs of battle and of judgement, of honor and of power."
+A thing called depictions is part of the chestplate. The description is "Gilt and finely-wrought reliefs of battle and of judgment, of honor and of power."
 
 A thing called laces is part of the golden sandals.
 
@@ -96,3 +96,15 @@ Table of Edicts of Hamurabi
 year		buy land	feed people	plant crops
 number	acreage	population	acreage
 with 10 blank rows
+
+Section - Times and Seasons
+
+The current year is a number variable. The current year is usually 10.
+
+Awaiting next season is a truth state that varies. Awaiting next season is usually false.
+
+Fall is a recurring scene. Fall begins when play begins. Fall begins when Spring ends. Fall ends when awaiting next season is true.
+
+Spring is a recurring scene. Spring begins when Winter ends. Spring ends when awaiting next season is true.
+
+Winter is a recurring scene. Winter begins when Fall ends. Winter ends when awaiting next season is true.
