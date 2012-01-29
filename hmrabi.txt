@@ -10,7 +10,7 @@
 # Y = yield this year (bushels per acre)
 # S = stored (bushels)
 # H = harvest this year (bushels)
-# Q = plague avoided
+# Q = plague avoided, people fed
 # E = eaten by rats this year (bushels)
 # init
 95 D1=0:P1=0

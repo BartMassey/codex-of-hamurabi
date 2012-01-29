@@ -1,13 +1,52 @@
-To run hmrabi with purch and feed:
-  -- Update population
-  pop <- pop + imm
+To run a year of hmrabi:
+  -- Add babies / immigrants
+  immigrants <- floor((random 1..5) * (20 * acreage + stored) / (100 * P) + 1)
+  pop <- pop + immigrants
+  record immigrants
+  record pop
+  -- Check for plague
+  plagued <- 0
   if 15% chance
     plagued <- ceil(pop / 2)
-    pop <- floor(pop / 2)
-  -- Update land
+    pop -= plagued
+  record plagued
+  -- Update acreage
   lprice <- randint(10) + 17
+  input purch
   lbushels <- lprice * purch
   assert acreage >= -purch land lbushels <= stored
   acreage += purch
   stored -= lbushels
-  --   
+  record lprice
+  record purch
+  record acreage
+  -- Feed people
+  input feed
+  assert feed >= 0 land feed <= stored
+  stored -= feed
+  record feed
+  -- Plant crops
+  input plant
+  assert plant >= 0
+  assert floor(plant) <= 2 * stored
+  assert plant <= 10 * pop
+  stored -= floor(plant)
+  record plant
+  -- Harvest crops
+  yield <- random 1..5
+  harvest <- plant * yield
+  record yield
+  record harvest
+  -- Feed rats
+  ratchance <- random 1..5
+  eaten <- 0
+  if ratchance is odd
+    eaten <- floor(stored / ratchance)
+  stored -= eaten
+  record eaten
+  -- Check for sufficiently fed
+  dead <- population - fed
+  if dead > 45% of population
+    failed <- true
+  record dead
+  record stored

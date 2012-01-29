@@ -29,7 +29,7 @@ Array UUID_ARRAY string "UUID://CB4D8AF0-44C6-11E1-B910-AA0004000A04//";
 Constant Story "The Codex of Hamurabi";
 Constant Headline SC_2;
 Constant Story_Author SC_3;
-Serial "120124";
+Serial "120128";
 
 Default Story 0;
 Default Headline 0;
@@ -374,7 +374,7 @@ Constant SCENE_TY = 39;
 Constant FIGURE_NAME_TY = 40;
 Constant SOUND_NAME_TY = 41;
 Constant EXTERNAL_FILE_TY = 42;
-Constant BASE_KIND_HWM = 44; ! Base kind high-water-mark
+Constant BASE_KIND_HWM = 48; ! Base kind high-water-mark
 
 
 Constant STUCK_PE     = 1;
@@ -9108,6 +9108,190 @@ Constant REL_BLOCK_HEADER ($100*6 + $$1101)*$10000;
     if (a > b) return b+(random(MAX_POSITIVE_NUMBER) % (a-b+1));
     return a+(random(MAX_POSITIVE_NUMBER) % (b-a+1));
 ];
+[ T59 value which rem ran;
+    if ((value - 0) > 1) jump Use_LP_1;
+    if ((value - 0) == 1) jump Use_LP_0;
+    jump Use_LP_1;
+    jump Use_LP_0;
+    return;
+
+    ! 10 subjects, with offset=0, multiplier=1
+
+    .Use_LP_1;
+    print value/1;
+    ! Ran is 1, OM is 1
+    if (rem > 0) {
+        print ".";
+        ran = 1;
+        while ((rem % 10 == 0) && (rem > 0)) { rem=rem/10; ran=ran/10; }
+        while (rem < ran/10) { print "0"; ran=ran/10; }
+        print rem;
+    }
+    print " ";
+    print "subjects";
+    return;
+
+    ! 1 subject, with offset=0, multiplier=1
+
+    .Use_LP_0;
+    print value/1;
+    ! Ran is 1, OM is 1
+    if (rem > 0) {
+        print ".";
+        ran = 1;
+        while ((rem % 10 == 0) && (rem > 0)) { rem=rem/10; ran=ran/10; }
+        while (rem < ran/10) { print "0"; ran=ran/10; }
+        print rem;
+    }
+    print " ";
+    print "subject";
+    return;
+];
+
+[ R_T59 a b;
+    if (a == 0 && b == 0) return (random(MAX_POSITIVE_NUMBER));
+    if (a == b) return b;
+    if (a > b) return b+(random(MAX_POSITIVE_NUMBER) % (a-b+1));
+    return a+(random(MAX_POSITIVE_NUMBER) % (b-a+1));
+];
+[ T60 value which rem ran;
+    if ((value - 0) > 1) jump Use_LP_3;
+    if ((value - 0) == 1) jump Use_LP_2;
+    jump Use_LP_3;
+    jump Use_LP_2;
+    return;
+
+    ! 10 acres, with offset=0, multiplier=1
+
+    .Use_LP_3;
+    print value/1;
+    ! Ran is 1, OM is 1
+    if (rem > 0) {
+        print ".";
+        ran = 1;
+        while ((rem % 10 == 0) && (rem > 0)) { rem=rem/10; ran=ran/10; }
+        while (rem < ran/10) { print "0"; ran=ran/10; }
+        print rem;
+    }
+    print " ";
+    print "acres";
+    return;
+
+    ! 1 acre, with offset=0, multiplier=1
+
+    .Use_LP_2;
+    print value/1;
+    ! Ran is 1, OM is 1
+    if (rem > 0) {
+        print ".";
+        ran = 1;
+        while ((rem % 10 == 0) && (rem > 0)) { rem=rem/10; ran=ran/10; }
+        while (rem < ran/10) { print "0"; ran=ran/10; }
+        print rem;
+    }
+    print " ";
+    print "acre";
+    return;
+];
+
+[ R_T60 a b;
+    if (a == 0 && b == 0) return (random(MAX_POSITIVE_NUMBER));
+    if (a == b) return b;
+    if (a > b) return b+(random(MAX_POSITIVE_NUMBER) % (a-b+1));
+    return a+(random(MAX_POSITIVE_NUMBER) % (b-a+1));
+];
+[ T61 value which rem ran;
+    if ((value - 0) > 1) jump Use_LP_5;
+    if ((value - 0) == 1) jump Use_LP_4;
+    jump Use_LP_5;
+    jump Use_LP_4;
+    return;
+
+    ! 10 bushels, with offset=0, multiplier=1
+
+    .Use_LP_5;
+    print value/1;
+    ! Ran is 1, OM is 1
+    if (rem > 0) {
+        print ".";
+        ran = 1;
+        while ((rem % 10 == 0) && (rem > 0)) { rem=rem/10; ran=ran/10; }
+        while (rem < ran/10) { print "0"; ran=ran/10; }
+        print rem;
+    }
+    print " ";
+    print "bushels";
+    return;
+
+    ! 1 bushel, with offset=0, multiplier=1
+
+    .Use_LP_4;
+    print value/1;
+    ! Ran is 1, OM is 1
+    if (rem > 0) {
+        print ".";
+        ran = 1;
+        while ((rem % 10 == 0) && (rem > 0)) { rem=rem/10; ran=ran/10; }
+        while (rem < ran/10) { print "0"; ran=ran/10; }
+        print rem;
+    }
+    print " ";
+    print "bushel";
+    return;
+];
+
+[ R_T61 a b;
+    if (a == 0 && b == 0) return (random(MAX_POSITIVE_NUMBER));
+    if (a == b) return b;
+    if (a > b) return b+(random(MAX_POSITIVE_NUMBER) % (a-b+1));
+    return a+(random(MAX_POSITIVE_NUMBER) % (b-a+1));
+];
+[ T62 value which rem ran;
+    if ((value - 0) > 1) jump Use_LP_7;
+    if ((value - 0) == 1) jump Use_LP_6;
+    jump Use_LP_7;
+    jump Use_LP_6;
+    return;
+
+    ! 10 bushels/acre, with offset=0, multiplier=1
+
+    .Use_LP_7;
+    print value/1;
+    ! Ran is 1, OM is 1
+    if (rem > 0) {
+        print ".";
+        ran = 1;
+        while ((rem % 10 == 0) && (rem > 0)) { rem=rem/10; ran=ran/10; }
+        while (rem < ran/10) { print "0"; ran=ran/10; }
+        print rem;
+    }
+    print " ";
+    print "bushels/acre";
+    return;
+
+    ! 1 bushel/acre, with offset=0, multiplier=1
+
+    .Use_LP_6;
+    print value/1;
+    ! Ran is 1, OM is 1
+    if (rem > 0) {
+        print ".";
+        ran = 1;
+        while ((rem % 10 == 0) && (rem > 0)) { rem=rem/10; ran=ran/10; }
+        while (rem < ran/10) { print "0"; ran=ran/10; }
+        print rem;
+    }
+    print " ";
+    print "bushel/acre";
+    return;
+];
+
+[ R_T62 a b;
+    if (a == 0 && b == 0) return (random(MAX_POSITIVE_NUMBER));
+    if (a == b) return b;
+    if (a > b) return b+(random(MAX_POSITIVE_NUMBER) % (a-b+1));
+    return a+(random(MAX_POSITIVE_NUMBER) % (b-a+1));
+];
 [ PrintKindValuePair k v;
     k = KindAtomic(k);
       switch(k) {
@@ -9151,6 +9335,10 @@ Constant REL_BLOCK_HEADER ($100*6 + $$1101)*$10000;
         41: print (PrintSoundName) v;
         42: print (PrintExternalFileName) v;
         43: print (T57) v;
+        44: print (T59) v;
+        45: print (T60) v;
+        46: print (T61) v;
+        47: print (T62) v;
         default: print v;
     }
 ];
@@ -9190,6 +9378,10 @@ Constant REL_BLOCK_HEADER ($100*6 + $$1101)*$10000;
         41: return ;
         42: return ;
         43: return I68_didn_t_understand_error;
+        44: return 0;
+        45: return 0;
+        46: return 0;
+        47: return 0;
         default: return 0;
     }
 ];
@@ -9331,7 +9523,7 @@ Array Map_Storage -->
 ;
 
 Class VPH_Class;
-Array KOV_representatives --> 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ValuePropertyHolder_39 0 0 0 0 ;
+Array KOV_representatives --> 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ValuePropertyHolder_39 0 0 0 0 0 0 0 0 ;
 VPH_Class ValuePropertyHolder_39
     with value_range 1
     with p54_recurring KOVP_39_P54
@@ -9507,14 +9699,14 @@ Object I46_north "" Compass
     with name 'north' 'n//' 
     with parse_name Parse_Name_GV1
     with action_bitmap 0 0 0 0 0 0 
+    with IK3_Link I47_northeast
     with KD_Count 3
     with list_together 0
     with IK3_Count 0
-    with IK3_Link I47_northeast
     with vector 0
+    with p9_opposite I49_south
     with short_name "north"
     with article SC_5
-    with p9_opposite I49_south
 ;
 
 Object I47_northeast "" Compass
@@ -9522,14 +9714,14 @@ Object I47_northeast "" Compass
     with name 'northeast' 'ne' 
     with parse_name Parse_Name_GV2
     with action_bitmap 0 0 0 0 0 0 
+    with IK3_Link I48_northwest
     with KD_Count 3
     with list_together 0
     with IK3_Count 1
-    with IK3_Link I48_northwest
     with vector 0
+    with p9_opposite I51_southwest
     with short_name "northeast"
     with article SC_5
-    with p9_opposite I51_southwest
 ;
 
 Object I48_northwest "" Compass
@@ -9537,14 +9729,14 @@ Object I48_northwest "" Compass
     with name 'northwest' 'nw' 
     with parse_name Parse_Name_GV3
     with action_bitmap 0 0 0 0 0 0 
+    with IK3_Link I49_south
     with KD_Count 3
     with list_together 0
     with IK3_Count 2
-    with IK3_Link I49_south
     with vector 0
+    with p9_opposite I50_southeast
     with short_name "northwest"
     with article SC_5
-    with p9_opposite I50_southeast
 ;
 
 Object I49_south "" Compass
@@ -9552,14 +9744,14 @@ Object I49_south "" Compass
     with name 'south' 's//' 
     with parse_name Parse_Name_GV4
     with action_bitmap 0 0 0 0 0 0 
+    with IK3_Link I50_southeast
     with KD_Count 3
     with list_together 0
     with IK3_Count 3
-    with IK3_Link I50_southeast
     with vector 0
+    with p9_opposite I46_north
     with short_name "south"
     with article SC_5
-    with p9_opposite I46_north
 ;
 
 Object I50_southeast "" Compass
@@ -9567,14 +9759,14 @@ Object I50_southeast "" Compass
     with name 'southeast' 'se' 
     with parse_name Parse_Name_GV5
     with action_bitmap 0 0 0 0 0 0 
+    with IK3_Link I51_southwest
     with KD_Count 3
     with list_together 0
     with IK3_Count 4
-    with IK3_Link I51_southwest
     with vector 0
+    with p9_opposite I48_northwest
     with short_name "southeast"
     with article SC_5
-    with p9_opposite I48_northwest
 ;
 
 Object I51_southwest "" Compass
@@ -9582,14 +9774,14 @@ Object I51_southwest "" Compass
     with name 'southwest' 'sw' 
     with parse_name Parse_Name_GV6
     with action_bitmap 0 0 0 0 0 0 
+    with IK3_Link I52_east
     with KD_Count 3
     with list_together 0
     with IK3_Count 5
-    with IK3_Link I52_east
     with vector 0
+    with p9_opposite I47_northeast
     with short_name "southwest"
     with article SC_5
-    with p9_opposite I47_northeast
 ;
 
 Object I52_east "" Compass
@@ -9597,14 +9789,14 @@ Object I52_east "" Compass
     with name 'east' 'e//' 
     with parse_name Parse_Name_GV7
     with action_bitmap 0 0 0 0 0 0 
+    with IK3_Link I53_west
     with KD_Count 3
     with list_together 0
     with IK3_Count 6
-    with IK3_Link I53_west
     with vector 0
+    with p9_opposite I53_west
     with short_name "east"
     with article SC_5
-    with p9_opposite I53_west
 ;
 
 Object I53_west "" Compass
@@ -9612,14 +9804,14 @@ Object I53_west "" Compass
     with name 'west' 'w//' 
     with parse_name Parse_Name_GV8
     with action_bitmap 0 0 0 0 0 0 
+    with IK3_Link I54_up
     with KD_Count 3
     with list_together 0
     with IK3_Count 7
-    with IK3_Link I54_up
     with vector 0
+    with p9_opposite I52_east
     with short_name "west"
     with article SC_5
-    with p9_opposite I52_east
 ;
 
 Object I54_up "" Compass
@@ -9627,14 +9819,14 @@ Object I54_up "" Compass
     with name 'up' 'u//' 
     with parse_name Parse_Name_GV9
     with action_bitmap 0 0 0 0 0 0 
+    with IK3_Link I55_down
     with KD_Count 3
     with list_together 0
     with IK3_Count 8
-    with IK3_Link I55_down
     with vector 0
+    with p9_opposite I55_down
     with short_name "up"
     with article SC_5
-    with p9_opposite I55_down
 ;
 
 Object I55_down "" Compass
@@ -9642,14 +9834,14 @@ Object I55_down "" Compass
     with name 'down' 'd//' 
     with parse_name Parse_Name_GV10
     with action_bitmap 0 0 0 0 0 0 
+    with IK3_Link in_obj
     with KD_Count 3
     with list_together 0
     with IK3_Count 9
-    with IK3_Link in_obj
     with vector 0
+    with p9_opposite I54_up
     with short_name "down"
     with article SC_5
-    with p9_opposite I54_up
 ;
 
 Object in_obj "" Compass
@@ -9657,14 +9849,14 @@ Object in_obj "" Compass
     with name 'inside' 'in' 
     with parse_name Parse_Name_GV11
     with action_bitmap 0 0 0 0 0 0 
+    with IK3_Link out_obj
     with KD_Count 3
     with list_together 0
     with IK3_Count 10
-    with IK3_Link out_obj
     with vector 0
+    with p9_opposite out_obj
     with short_name "inside"
     with article SC_5
-    with p9_opposite out_obj
 ;
 
 Object out_obj "" Compass
@@ -9672,26 +9864,26 @@ Object out_obj "" Compass
     with name 'outside' 'out' 
     with parse_name Parse_Name_GV12
     with action_bitmap 0 0 0 0 0 0 
+    with IK3_Link nothing
     with KD_Count 3
     with list_together 0
     with IK3_Count 11
-    with IK3_Link nothing
     with vector 0
+    with p9_opposite in_obj
     with short_name "outside"
     with article SC_5
-    with p9_opposite in_obj
 ;
 
 Object I88_throne_room ""
     class K1_room
     with name 'throne' 'room' 
     with KD_Count 1
+    with room_index -1
     with list_together 0
     has mark_as_room
     with IK1_Count 0
     with IK1_Link nothing
     with vector 0
-    with room_index -1
     with short_name "Throne Room"
     with description text_routine_0
 ;
@@ -9820,14 +10012,14 @@ Object -> I96_the_throne_of_hamurabi ""
     class K6_supporter
     with name 'the' 'throne' 'of' 'hamurabi' 
     with action_bitmap 0 0 0 0 0 0 
+    with IK6_Count 0
+    with IK6_Link nothing
     with KD_Count 6
     with list_together 0
     with cap_short_name "The Throne of Hamurabi"
     has mark_as_thing
     with IK2_Count 7
     with IK2_Link selfobj
-    with IK6_Count 0
-    with IK6_Link nothing
     with vector 0
     has enterable
     has proper
@@ -9844,14 +10036,14 @@ Object -> -> selfobj ""
      
     with name 'yourself' 
     with action_bitmap 0 0 0 0 0 0 
+    with IK8_Count 0
+    with IK8_Link I109_steward
     with KD_Count 8
     with list_together 0
     with cap_short_name "Yourself"
     has mark_as_thing
     with IK2_Count 0
     with IK2_Link I97_linen_skirt
-    with IK8_Count 0
-    with IK8_Link I109_steward
     with vector 0
     has concealed
     has proper
@@ -9889,8 +10081,8 @@ Object -> -> -> I98_chestplate ""
     with IK2_Link I99_golden_sandals
     has worn
     with vector 0
-    has proper
     has clothing
+    has proper
     with short_name "chestplate"
     with description text_routine_2
 ;
@@ -9908,8 +10100,8 @@ Object -> -> -> I99_golden_sandals ""
     with IK2_Link I100_ornate_crown
     has worn
     with vector 0
-    has proper
     has clothing
+    has proper
     with short_name "golden sandals"
     with description text_routine_3
 ;
@@ -9952,13 +10144,13 @@ Object -> I109_steward ""
     class K8_person
     with name 'steward' 
     with action_bitmap 0 0 0 0 0 0 
+    with IK8_Count 1
+    with IK8_Link nothing
     with KD_Count 8
     with list_together 0
     has mark_as_thing
     with IK2_Count 20
     with IK2_Link I110_modest_tunic
-    with IK8_Count 1
-    with IK8_Link nothing
     with vector 0
     with short_name "Steward"
     with description text_routine_6
@@ -9994,8 +10186,8 @@ Object -> -> I111_leather_sandals ""
     with IK2_Link I112_the_staff_of_stewardshi
     has worn
     with vector 0
-    has proper
     has clothing
+    has proper
     with short_name "leather sandals"
     with description SC_11
 ;
@@ -10274,23 +10466,23 @@ Array tab_0_4 table $0068 4  TABLE_NOVALUE TABLE_NOVALUE (V26_amusing_a_victorio
 Array T1_locale_priorities table  tab_1_0 tab_1_1;
 Array tab_1_0 table $0869 NULL  TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE;
 Array tab_1_1 table $446a 5  TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE;
-Array T2_kingdom_states table  tab_2_0 tab_2_1 tab_2_2 tab_2_3 tab_2_4 tab_2_5;
-Array tab_2_0 table $446b 9  (9)  (10)  TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE;
-Array tab_2_1 table $446c 11  (20)  (20)  TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE;
-Array tab_2_2 table $446d 13  (5)  (5)  TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE;
-Array tab_2_3 table $446e 15  (90)  (95)  TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE;
-Array tab_2_4 table $446f 17  (1000)  (1000)  TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE;
-Array tab_2_5 table $4470 19  (2800)  (2800)  TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE;
-Array T3_kingdom_changes table  tab_3_0 tab_3_1 tab_3_2 tab_3_3 tab_3_4 tab_3_5;
-Array tab_3_0 table $446b 21  (9)  TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE;
-Array tab_3_1 table $4471 23  (0)  TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE;
-Array tab_3_2 table $4472 25  (0)  TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE;
-Array tab_3_3 table $4473 27  (5)  TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE;
-Array tab_3_4 table $4474 29  (3)  TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE;
-Array tab_3_5 table $4475 31  (3000)  TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE;
-Array T4_kingdom_plans table  tab_4_0 tab_4_1;
-Array tab_4_0 table $4476 33  TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE;
-Array tab_4_1 table $4477 35  TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE;
+Array T2_state_of_sumer table  tab_2_0 tab_2_1 tab_2_2 tab_2_3;
+Array tab_2_0 table $446b 9  (10)  TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE;
+Array tab_2_1 table $446c 11  (95)  TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE;
+Array tab_2_2 table $446d 13  (1000)  TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE;
+Array tab_2_3 table $446e 15  (2800)  TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE;
+Array T3_records_of_sumer table  tab_3_0 tab_3_1 tab_3_2 tab_3_3 tab_3_4 tab_3_5;
+Array tab_3_0 table $446b 17  TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE;
+Array tab_3_1 table $446f 19  TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE;
+Array tab_3_2 table $4470 21  TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE;
+Array tab_3_3 table $4471 23  TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE;
+Array tab_3_4 table $4472 25  TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE;
+Array tab_3_5 table $4473 27  TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE;
+Array T4_edicts_of_hamurabi table  tab_4_0 tab_4_1 tab_4_2 tab_4_3;
+Array tab_4_0 table $446b 29  TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE;
+Array tab_4_1 table $4474 31  TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE;
+Array tab_4_2 table $4475 33  TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE;
+Array tab_4_3 table $4476 35  TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE TABLE_NOVALUE;
 Array TB_Blanks -> 
   ! For table T0_final_question_options
   $00  ! Column 0
@@ -10302,25 +10494,25 @@ Array TB_Blanks ->
   ! For table T1_locale_priorities
   $ff $ff $ff $7f  ! Column 1
   
-  ! For table T2_kingdom_states
-  $fc $0f  ! Column 0
-  $fc $0f  ! Column 1
-  $fc $0f  ! Column 2
-  $fc $0f  ! Column 3
-  $fc $0f  ! Column 4
-  $fc $0f  ! Column 5
+  ! For table T2_state_of_sumer
+  $fe $03  ! Column 0
+  $fe $03  ! Column 1
+  $fe $03  ! Column 2
+  $fe $03  ! Column 3
   
-  ! For table T3_kingdom_changes
-  $fe $07  ! Column 0
-  $fe $07  ! Column 1
-  $fe $07  ! Column 2
-  $fe $07  ! Column 3
-  $fe $07  ! Column 4
-  $fe $07  ! Column 5
-  
-  ! For table T4_kingdom_plans
+  ! For table T3_records_of_sumer
   $ff $07  ! Column 0
   $ff $07  ! Column 1
+  $ff $07  ! Column 2
+  $ff $07  ! Column 3
+  $ff $07  ! Column 4
+  $ff $07  ! Column 5
+  
+  ! For table T4_edicts_of_hamurabi
+  $ff $07  ! Column 0
+  $ff $07  ! Column 1
+  $ff $07  ! Column 2
+  $ff $07  ! Column 3
   
   ! End of table
   NULL NULL;
@@ -10334,23 +10526,22 @@ Array TB_Blanks ->
         105: return OBJECT_TY; ! notable-object: object
         106: return NUMBER_TY; ! locale description priority: number
         107: return NUMBER_TY; ! year: number
-        108: return NUMBER_TY; ! total deaths: number
-        109: return NUMBER_TY; ! mean death pct: number
-        110: return NUMBER_TY; ! population: number
-        111: return NUMBER_TY; ! acreage: number
-        112: return NUMBER_TY; ! stored: number
-        113: return NUMBER_TY; ! starved: number
-        114: return NUMBER_TY; ! plague: number
-        115: return NUMBER_TY; ! immigrants: number
-        116: return NUMBER_TY; ! yield: number
-        117: return NUMBER_TY; ! harvested: number
-        118: return NUMBER_TY; ! buy land: number
-        119: return NUMBER_TY; ! feed people: number
+        108: return 44; ! population: population
+        109: return 45; ! acreage: acreage
+        110: return 46; ! stored: grain
+        111: return 44; ! starved: population
+        112: return 44; ! plague: population
+        113: return 44; ! immigrants: population
+        114: return 47; ! yield: grain/acreage
+        115: return 46; ! harvested: grain
+        116: return 45; ! buy land: acreage
+        117: return 44; ! feed people: population
+        118: return 45; ! plant crops: acreage
     }
     return UNKNOWN_TY;
 ];
 
-Array TableOfTables --> TheEmptyTable T0_final_question_options  T1_locale_priorities  T2_kingdom_states  T3_kingdom_changes  T4_kingdom_plans  0 0;
+Array TableOfTables --> TheEmptyTable T0_final_question_options  T1_locale_priorities  T2_state_of_sumer  T3_records_of_sumer  T4_edicts_of_hamurabi  0 0;
 
 
 
@@ -11320,7 +11511,7 @@ self = noun;
 self = noun;
    if (debug_rules) DB_Rule(R_747, 747);
       ! phrase 1
-      ! [1: say ~[one of]You dream of going down among the people: of becoming one of them, merely a cog in the vast machine of Sumeria. Then you consider your position. Being a near-deity living in absurd luxury is, on reflection, a better course. You remain where you are.[or]There's nothing down there you want. You continue to work.[stopping]~]
+      ! [1: say ~[one of]You dream of going down among the people: of becoming one of them, merely a cog in the vast machine of Sumer. Then you consider your position. Being a near-deity living in absurd luxury is, on reflection, a better course. You remain where you are.[or]There's nothing down there you want. You continue to work.[stopping]~]
       say__p=1;ParaContent();  I7_ST_say_one_of-->1 =
 	i7_soo_stop(I7_ST_say_one_of-->1, 2);
 	switch((I7_ST_say_one_of-->1)%(2+1)-1) {
@@ -11499,7 +11690,7 @@ self = noun;
 ! Before printing the banner text:
 [ R_740 ;
       ! phrase 1
-      ! [1: say ~Govern ancient Sumeria for 10 short years...[paragraph break]~]
+      ! [1: say ~Govern ancient Sumer for 10 short years...[paragraph break]~]
       say__p=1;ParaContent();  print (PrintText) SC_46; ParaContent();  DivideParagraphPoint(); new_line;  .L_Say12; .L_SayX12;
    rfalse;
 ];
@@ -24892,9 +25083,9 @@ Array CheckTableEntryIsNonBlank_LU
   TheEmptyTable: print "(the empty table)"; return;
   T0_final_question_options: print "Table of Final Question Options"; return;
   T1_locale_priorities: print "Table of Locale Priorities"; return;
-  T2_kingdom_states: print "Table of Kingdom States"; return;
-  T3_kingdom_changes: print "Table of Kingdom Changes"; return;
-  T4_kingdom_plans: print "Table of Kingdom Plans"; return;
+  T2_state_of_sumer: print "Table of State of Sumer"; return;
+  T3_records_of_sumer: print "Table of Records of Sumer"; return;
+  T4_edicts_of_hamurabi: print "Table of Edicts of Hamurabi"; return;
 
 		default: print "** No such table **";
 	}
@@ -28750,7 +28941,7 @@ Constant SC_87 = ", this garment is otherwise unadorned.";
 Constant SC_80 = ", this golden crown rests easy on the head of the Great king.";
 Constant SC_52 = ",";
 Constant SC_82 = ". It is adorned with ";
-Constant SC_89 = ". The Steward has been hitting things again, then.";
+Constant SC_89 = ". The Steward is evidently not above striking that which needs striking.";
 Constant SC_70 = ". Warm natural ";
 Constant SC_74 = ". You are clearly a destined ruler.";
 Constant SC_64 = ".";
@@ -28767,9 +28958,9 @@ Constant SC_47 = "Copyright ";
 Constant SC_79 = "Dotted with ";
 Constant SC_15 = "Gilt and finely-wrought reliefs of battle and of judgement, of honor and of power.";
 Constant SC_77 = "Gold and leather, with high ";
-Constant SC_46 = "Govern ancient Sumeria for 10 short years...";
+Constant SC_46 = "Govern ancient Sumer for 10 short years...";
 Constant SC_57 = "In ";
-Constant SC_12 = "In this place, in this time, books have an almost palpable power. This one, for instance, chronicles the history and state of the Kingdom of Sumeria: its population and food supply, its immigration and death, its land and its inhabitants all the way down to the rats in the granaries.";
+Constant SC_12 = "In this place, in this time, books have an almost palpable power. This one, for instance, chronicles the history of the Kingdom of Sumer: its population and food supply, its immigration and death, its land and its inhabitants all the way down to the rats in the granaries.";
 Constant SC_21 = "Intricately wrought, and in good condition. A respectable garment for a respectable man.";
 Constant SC_22 = "Just a scratch, but fraught with meaning.";
 Constant SC_33 = "No glass. No frame. Just a hole. You take the window, but only in the abstract sense of possession; the window's emptiness is now yours.";
@@ -28785,13 +28976,13 @@ Constant SC_6 = "The shafts of sunlight adorn the Throne Room with an appropriat
 Constant SC_19 = "The symbols tell the story of the greatness of Hamurabi, for those with the wit to read it.";
 Constant SC_7 = "The windows glow with the promise of your inevitable ascension.";
 Constant SC_37 = "There's nothing down there you want. You continue to work.";
-Constant SC_11 = "These sandals are well-made but well-worn, evidently the property of a Steward who has walked Sumeria many times in the course of his duties.";
+Constant SC_11 = "These sandals are well-made but well-worn, evidently the property of a Steward who has walked Sumer many times in the course of his duties.";
 Constant SC_38 = "These things have resided here for a thousand years. You leave them to reside a thousand more.";
 Constant SC_14 = "This clever wrought-gold hook clips the edges of the skirt together reliably.";
-Constant SC_88 = "This elegant ebony staff reflects its utilitarian roots in the occasional well-patched ";
+Constant SC_88 = "This elegant ebony staff reflects its utilitarian roots in a well-patched ";
 Constant SC_75 = "This gold, bronze and iron chestplate is wrought with ";
 Constant SC_9 = "This is a simple linen garment, but the weave is incredibly fine and the needlework is impeccable. A stylish gold clasp closes the garment at the waist. Understated, but fit for a king.";
-Constant SC_84 = "This is the prime servant of The King; the man charged with carrying out the policies of Sumeria. He is wearing ";
+Constant SC_84 = "This is the prime servant of The King; the man charged with carrying out the policies of Sumer. He is wearing ";
 Constant SC_8 = "This majestic gold and iron seat stands three rods high.";
 Constant SC_17 = "This sapphire is the size of a plover's egg, and sparkles like a diamond in the night sky.";
 Constant SC_81 = "This tall gold rod is capped with ";
@@ -28806,12 +28997,12 @@ Constant SC_56 = "You ";
 Constant SC_34 = "You cast your eyes up toward the Sumerian sun. For a moment, you imagine yourself as an egret, flying free in the wind. Sighing, you return to your duties as King.";
 Constant SC_73 = "You consider your stature, your grace and your excellence. You consider your garments: ";
 Constant SC_42 = "You decide that you can't leave now; there is too much to be done.";
-Constant SC_36 = "You dream of going down among the people: of becoming one of them, merely a cog in the vast machine of Sumeria. Then you consider your position. Being a near-deity living in absurd luxury is, on reflection, a better course. You remain where you are.";
+Constant SC_36 = "You dream of going down among the people: of becoming one of them, merely a cog in the vast machine of Sumer. Then you consider your position. Being a near-deity living in absurd luxury is, on reflection, a better course. You remain where you are.";
 Constant SC_43 = "You make a mental note to check out the ";
 Constant SC_35 = "You shake your head at the obstinacy of your obligations, and continue to work.";
 Constant SC_40 = "You start to head ";
 Constant SC_39 = "You wander aimlessly around the Throne Room. So hard to concentrate. Oh well: that is the kind of thing, after all, that your Steward does admirably.";
-Constant SC_10 = "Your humble Steward awaits your commands with quiet dignity.";
+Constant SC_10 = "Your Steward awaits your commands with quiet dignity.";
 Constant SC_61 = "also ";
 Constant SC_60 = "can ";
 Constant SC_62 = "see ";

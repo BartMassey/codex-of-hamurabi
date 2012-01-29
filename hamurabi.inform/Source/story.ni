@@ -58,7 +58,7 @@ Instead of going a direction (called direction intended): say "[one of]You wande
 
 Section - The Steward
 
-The Steward is in the Throne Room. "Your humble Steward awaits your commands with quiet dignity." The description is "This is the prime servant of The King; the man charged with carrying out the policies of Sumer. He is wearing [list of things worn by the Steward with indefinite articles]; he carries [list of things carried by the Steward with indefinite articles]." He is wearing a modest tunic and leather sandals. The description of the tunic is "Tied at the waist with a fine braided [leather belt], this garment is otherwise unadorned." The description of the leather sandals is "These sandals are well-made but well-worn, evidently the property of a Steward who has walked Sumer many times in the course of his duties." He is carrying The Staff of Stewardship, The Annual Journal, and an iron stylus. The description of the staff is "This elegant ebony staff reflects its utilitarian roots in the occasional well-patched [scar]. The Steward has been hitting things again, then."
+The Steward is in the Throne Room. "Your Steward awaits your commands with quiet dignity." The description is "This is the prime servant of The King; the man charged with carrying out the policies of Sumer. He is wearing [list of things worn by the Steward with indefinite articles]; he carries [list of things carried by the Steward with indefinite articles]." He is wearing a modest tunic and leather sandals. The description of the tunic is "Tied at the waist with a fine braided [leather belt], this garment is otherwise unadorned." The description of the leather sandals is "These sandals are well-made but well-worn, evidently the property of a Steward who has walked Sumer many times in the course of his duties." He is carrying The Staff of Stewardship, The Annual Journal, and an iron stylus. The description of the staff is "This elegant ebony staff reflects its utilitarian roots in a well-patched [scar]. The Steward is evidently not above striking that which needs striking."
 
 The description of the stylus is "This three-sided iron tool has an angular tip. It is well-suited to embossing and inscription." Understand "tool" as the stylus. The angular tip is part of the stylus. The description is "This wedge-shaped tip makes an angular mark."
 
@@ -66,25 +66,33 @@ The leather belt is part of the tunic. The description is "Intricately wrought, 
 
 The scar is part of the staff. "Just a scratch, but fraught with meaning."
 
-The description of the Journal is "In this place, in this time, books have an almost palpable power. This one, for instance, chronicles the history and state of the Kingdom of Sumer: its population and food supply, its immigration and death, its land and its inhabitants all the way down to the rats in the granaries."
+The description of the Journal is "In this place, in this time, books have an almost palpable power. This one, for instance, chronicles the history of the Kingdom of Sumer: its population and food supply, its immigration and death, its land and its inhabitants all the way down to the rats in the granaries."
 
 A thing called pages is part of the Journal. The description is "The Annual Journal's pages are sheets of purest gold, embossed by stylus with a record of the history of Sumer over a year's time."
 
+Section - Units of Record
+
+Population is a kind of value. 1 subject (singular) specifies population. 10 subjects (plural) specifies population.
+
+Acreage is a kind of  value. 1 acre (singular) specifies acreage. 10 acres (plural) specifies acreage.
+
+Grain is a kind of value. 1 bushel (singular) specifies grain. 10 bushels (plural) specifies grain.
+
+Grain/acreage is a kind of value. 1 bushel/acre (singular) specifies grain/acreage. 10 bushels/acre (plural) specifies grain/acreage. Acreage times grain/acreage specifies grain.
 
 Section - The Record
 
-Table of Kingdom States
-year	total deaths	mean death pct	population	acreage	stored
-9	20			5				90			1000	2800
-10	20			5				95			1000	2800
+Table of State of Sumer
+year	population	acreage		stored
+10	95 subjects	1000 acres	2800 bushels
+with 9 blank rows
+
+Table of Records of Sumer
+year		starved		plague		immigrants	yield		harvested
+number	population	population	population	grain/acreage	grain
 with 10 blank rows
 
-Table of Kingdom Changes
-year	starved	plague	immigrants	yield	harvested
-9	0		0		5			3		3000
-with 10 blank rows
-
-Table of Kingdom Plans
-buy land	feed people
-number	number
+Table of Edicts of Hamurabi
+year		buy land	feed people	plant crops
+number	acreage	population	acreage
 with 10 blank rows

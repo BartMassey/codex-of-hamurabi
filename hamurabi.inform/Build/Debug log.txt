@@ -6,7 +6,7 @@ Inform called as: /usr/lib/gnome-inform7/gnome-inform7/ni -rules /usr/share/gnom
 Phase I ... Lexical analysis
 -----------------------------------------------------
 
-I've now read your source text, which is 1375 words long.
+I've now read your source text, which is 1446 words long.
 
 
 -----------------------------------------------------
@@ -44,6 +44,11 @@ Phase VI ... Semantic analysis III
 Phase VII ... First pass through assertions
 -----------------------------------------------------
 
+Requested acreage x grain/acreage = grain
+Dimensionless: number
+Base units: time, population, acreage, grain
+Derived units:
+grain/acreage = (acreage)-1.(grain)
 
 
 -----------------------------------------------------
