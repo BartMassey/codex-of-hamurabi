@@ -10,7 +10,7 @@ The current year is a number that varies. The current year is 10.
 
 Section - The Throne Room
 
-The Throne Room is a room. "Stone splendor stretches upward around your throne in this vast and echoing hall. Soft linen [carpets], rich wood [furniture], and gold accessories and [ornaments] adorn the richly tiled [stone floor]. Warm natural [sunlight] filters in through various [high windows], contrasting pleasantly with the dim, cool surroundings."
+The Throne Room is a room. "[if the player is on the Throne of Hamurabi]You sit upon the Throne of Hamurabi, as is your right as King.[paragraph break][end if]Stone splendor stretches upward around you in this vast and echoing hall. Soft linen [carpets], rich wood [furniture], and gold accessories and [ornaments] adorn the richly tiled [stone floor]. Warm natural [sunlight] filters in through various [high windows], contrasting pleasantly with the dim, cool surroundings."
 
 Throne room junk is a kind of thing. The description is usually "Very beautiful, and very appropriate to the space." The carpets, furniture, ornaments, stone floor, sunlight and high windows are fixed in place scenery throne room junk in the Throne Room.
 
@@ -30,15 +30,23 @@ Section - Hamurabi the Player
 
 The description of the player is "You consider your stature, your grace and your excellence. [if the list of things worn by the player is empty]You consider your magnificent unclothed form[else]You consider your garments: [list of things worn by the player with definite articles][end if]. You, Hamurabi, are clearly a destined ruler." The player is on The Throne of Hamurabi. He is wearing a linen skirt, chestplate, golden sandals and an ornate crown. He carries The Rod of Hamurabi. 
 
-The description of the skirt is "This is a simple linen garment, but the weave is incredibly fine and the needlework is impeccable. A stylish gold clasp closes the garment at the waist. Understated, but fit for a king." The description of the chestplate is "This gold, bronze and iron chestplate is wrought with [depictions] of the glory of Hamurabi." The description of the golden sandals is "Gold and leather, with high [laces] and precious ornamentation." The description of the crown is "Dotted with [precious stones], this golden crown rests easy on the head of the Great king." The description of the Rod is "This tall gold rod is capped with [a sparkling sapphire]. It is adorned with [mystic writing] and with [arcane symbols]."
+The description of the skirt is "This is a simple linen garment, but the weave is incredibly fine and the needlework is impeccable. A stylish gold clasp closes the garment at the waist. Understated, but fit for a king."
 
-The gold clasp is part of the skirt. The description is "This clever wrought-gold hook clips the edges of the skirt together reliably."
+The gold clasp is part of the skirt. The description is "This clever wrought-gold hook clips the edges of the skirt together reliably." Understand "wrought-gold" or "hook" or "clip" as the gold clasp.
 
-A thing called depictions is part of the chestplate. The description is "Gilt and finely-wrought reliefs of battle and of judgment, of honor and of power."
+The description of the chestplate is "This gold, bronze and iron chestplate is wrought with [depictions] of the glory of Hamurabi."
+
+Some things called depictions are part of the chestplate. The description is "Gilt and finely-wrought reliefs of battle and of judgment, of honor and of power." Understand "reliefs" as depictions.
+
+The description of the golden sandals is "Gold and leather, with high [laces] and precious ornamentation."
 
 A thing called laces is part of the golden sandals.
 
+The description of the crown is "Dotted with [precious stones], this golden crown rests easy on the head of the Great king."
+
 Precious stones are part of the crown. The description is "Beautiful, and glowing with all the colors of the rainbow. Who knows what distant land these radiant gems once decorated?"
+
+The description of the Rod is "This tall gold rod is capped with [a sparkling sapphire]. It is adorned with [mystic writing] and with [arcane symbols]."
 
 A sparkling sapphire is part of the Rod. The description is "This sapphire is the size of a plover's egg, and sparkles like a diamond in the night sky."
 

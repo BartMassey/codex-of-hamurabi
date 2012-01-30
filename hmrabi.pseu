@@ -1,6 +1,6 @@
 To run a year of hmrabi:
   -- Add babies / immigrants
-  immigrants <- floor((random 1..5) * (20 * acreage + stored) / (100 * P) + 1)
+  immigrants <- floor((random 1..5) times (20 times acreage + stored) / (100 times P) + 1)
   pop <- pop + immigrants
   record immigrants
   record pop
@@ -13,7 +13,7 @@ To run a year of hmrabi:
   -- Update acreage
   lprice <- randint(10) + 17
   input purch
-  lbushels <- lprice * purch
+  lbushels <- lprice times purch
   assert acreage >= -purch land lbushels <= stored
   acreage += purch
   stored -= lbushels
@@ -28,13 +28,13 @@ To run a year of hmrabi:
   -- Plant crops
   input plant
   assert plant >= 0
-  assert floor(plant) <= 2 * stored
-  assert plant <= 10 * pop
+  assert floor(plant) <= 2 times stored
+  assert plant <= 10 times pop
   stored -= floor(plant)
   record plant
   -- Harvest crops
   yield <- random 1..5
-  harvest <- plant * yield
+  harvest <- plant times yield
   record yield
   record harvest
   -- Feed rats
