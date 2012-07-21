@@ -38,7 +38,7 @@ Instead of taking windows: say "No glass. No frame. Just a hole. You take the wi
 
 Instead of taking throne room junk: say "These things have resided here for a thousand years. You leave them to reside a thousand more."
 
-An enterable supporter called the Throne of Hamurabi is scenery in the Throne Room. The description is "This majestic gold and iron seat stands three cubits high." Does the player mean entering the Throne of Hamurabi: it is likely. Understand "gold seat" or "iron seat" or "gold and iron seat" as The Throne of Hamurabi. Three cubits are a backdrop. The description is "You stand about three 'Sumerian cubits' high as well."
+An enterable supporter called the Throne of Hamurabi is scenery in the Throne Room. The description is "This majestic gold and iron seat stands four cubits high." Does the player mean entering the Throne of Hamurabi: it is likely. Understand "gold seat" or "iron seat" or "gold and iron seat" as The Throne of Hamurabi. Four cubits are a backdrop in the world. The description is "You stand three and a half 'Sumerian cubits' high. A Kingly height indeed."
 
 Section - Hamurabi the Player
 
