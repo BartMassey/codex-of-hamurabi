@@ -42,6 +42,8 @@ An enterable supporter called the Throne of Hamurabi is scenery in the Throne Ro
 
 Section - Hamurabi the Player
 
+King Hamurabi is a backdrop in the world. Instead of doing something with King Hamurabi: say "The 'Royal We' is majestic, but in your own mind you secretly refer to yourself as 'me'. Beneath you? Perhaps. But there it is." Does the player mean examining King Hamurabi: it is likely.
+
 The description of the player is "You consider your stature, your grace and your excellence. [if the list of things worn by the player is empty]You consider your magnificent unclothed form[else]You consider your garments: [list of things worn by the player with definite articles][end if]. You, Hamurabi, are clearly a destined ruler." The player is on the Throne of Hamurabi. He is wearing a linen skirt, chestplate, golden sandals and an ornate crown. He carries the Rod of Hamurabi. 
 
 The description of the skirt is "This is a simple linen garment, but the weave is incredibly fine and the needlework is impeccable. A stylish [gold clasp] closes the garment at the waist. Understated, but fit for a king."
