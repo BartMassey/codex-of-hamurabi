@@ -1,0 +1,58 @@
+<!-- This pseudocode translated from <stdin> by pseuf -->
+
+<blockquote>
+  <p>To&nbsp;run&nbsp;a&nbsp;year&nbsp;of&nbsp;hmrabi: <br />
+&nbsp;&nbsp;--&nbsp;Add&nbsp;babies&nbsp;/&nbsp;immigrants <br />
+&nbsp;&nbsp;immigrants&nbsp;&#8592;&nbsp;floor((random&nbsp;1..5)&nbsp;times&nbsp;(20&nbsp;times&nbsp;acreage&nbsp;+&nbsp;stored)&nbsp;/&nbsp;(100&nbsp;times&nbsp;P)&nbsp;+&nbsp;1) <br />
+&nbsp;&nbsp;pop&nbsp;&#8592;&nbsp;pop&nbsp;+&nbsp;immigrants <br />
+&nbsp;&nbsp;record&nbsp;immigrants <br />
+&nbsp;&nbsp;record&nbsp;pop <br />
+&nbsp;&nbsp;--&nbsp;Check&nbsp;<strong>for</strong>&nbsp;plague <br />
+&nbsp;&nbsp;plagued&nbsp;&#8592;&nbsp;0 <br />
+&nbsp;&nbsp;<strong>if</strong>&nbsp;15%&nbsp;chance <br />
+&nbsp;&nbsp;&nbsp;&nbsp;plagued&nbsp;&#8592;&nbsp;ceil(pop&nbsp;/&nbsp;2) <br />
+&nbsp;&nbsp;&nbsp;&nbsp;pop&nbsp;-=&nbsp;plagued <br />
+&nbsp;&nbsp;record&nbsp;plagued <br />
+&nbsp;&nbsp;--&nbsp;Update&nbsp;acreage <br />
+&nbsp;&nbsp;lprice&nbsp;&#8592;&nbsp;randint(10)&nbsp;+&nbsp;17 <br />
+&nbsp;&nbsp;input&nbsp;purch <br />
+&nbsp;&nbsp;lbushels&nbsp;&#8592;&nbsp;lprice&nbsp;times&nbsp;purch <br />
+&nbsp;&nbsp;assert&nbsp;acreage&nbsp;&#8805;&nbsp;-purch&nbsp;&#8743;&nbsp;lbushels&nbsp;&#8804;&nbsp;stored <br />
+&nbsp;&nbsp;acreage&nbsp;+=&nbsp;purch <br />
+&nbsp;&nbsp;stored&nbsp;-=&nbsp;lbushels <br />
+&nbsp;&nbsp;record&nbsp;lprice <br />
+&nbsp;&nbsp;record&nbsp;purch <br />
+&nbsp;&nbsp;record&nbsp;acreage <br />
+&nbsp;&nbsp;--&nbsp;Feed&nbsp;people <br />
+&nbsp;&nbsp;input&nbsp;feed <br />
+&nbsp;&nbsp;assert&nbsp;feed&nbsp;&#8805;&nbsp;0&nbsp;&#8743;&nbsp;feed&nbsp;&#8804;&nbsp;stored <br />
+&nbsp;&nbsp;stored&nbsp;-=&nbsp;feed <br />
+&nbsp;&nbsp;record&nbsp;feed <br />
+&nbsp;&nbsp;--&nbsp;Plant&nbsp;crops <br />
+&nbsp;&nbsp;input&nbsp;plant <br />
+&nbsp;&nbsp;assert&nbsp;plant&nbsp;&#8805;&nbsp;0 <br />
+&nbsp;&nbsp;assert&nbsp;floor(plant)&nbsp;&#8804;&nbsp;2&nbsp;times&nbsp;stored <br />
+&nbsp;&nbsp;assert&nbsp;plant&nbsp;&#8804;&nbsp;10&nbsp;times&nbsp;pop <br />
+&nbsp;&nbsp;stored&nbsp;-=&nbsp;floor(plant) <br />
+&nbsp;&nbsp;record&nbsp;plant <br />
+&nbsp;&nbsp;--&nbsp;Harvest&nbsp;crops <br />
+&nbsp;&nbsp;yield&nbsp;&#8592;&nbsp;random&nbsp;1..5 <br />
+&nbsp;&nbsp;harvest&nbsp;&#8592;&nbsp;plant&nbsp;times&nbsp;yield <br />
+&nbsp;&nbsp;record&nbsp;yield <br />
+&nbsp;&nbsp;record&nbsp;harvest <br />
+&nbsp;&nbsp;--&nbsp;Feed&nbsp;rats <br />
+&nbsp;&nbsp;ratchance&nbsp;&#8592;&nbsp;random&nbsp;1..5 <br />
+&nbsp;&nbsp;eaten&nbsp;&#8592;&nbsp;0 <br />
+&nbsp;&nbsp;<strong>if</strong>&nbsp;ratchance&nbsp;is&nbsp;odd <br />
+&nbsp;&nbsp;&nbsp;&nbsp;eaten&nbsp;&#8592;&nbsp;floor(stored&nbsp;/&nbsp;ratchance) <br />
+&nbsp;&nbsp;stored&nbsp;-=&nbsp;eaten <br />
+&nbsp;&nbsp;record&nbsp;eaten <br />
+&nbsp;&nbsp;--&nbsp;Check&nbsp;<strong>for</strong>&nbsp;sufficiently&nbsp;fed <br />
+&nbsp;&nbsp;dead&nbsp;&#8592;&nbsp;population&nbsp;-&nbsp;fed <br />
+&nbsp;&nbsp;<strong>if</strong>&nbsp;dead&nbsp;&gt;&nbsp;45%&nbsp;of&nbsp;population <br />
+&nbsp;&nbsp;&nbsp;&nbsp;failed&nbsp;&#8592;&nbsp;true <br />
+&nbsp;&nbsp;record&nbsp;dead <br />
+&nbsp;&nbsp;record&nbsp;stored  </p>
+</blockquote>
+
+<!-- End of pseuf translation of <stdin> -->

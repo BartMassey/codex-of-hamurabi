@@ -1,0 +1,56 @@
+<!-- This pseudocode translated from <stdin> by pseuf -->
+
+> To&nbsp;run&nbsp;a&nbsp;year&nbsp;of&nbsp;hmrabi:  
+> &nbsp;&nbsp;--&nbsp;Add&nbsp;babies&nbsp;/&nbsp;immigrants  
+> &nbsp;&nbsp;immigrants&nbsp;&#8592;&nbsp;floor((random&nbsp;1..5)&nbsp;times&nbsp;(20&nbsp;times&nbsp;acreage&nbsp;+&nbsp;stored)&nbsp;/&nbsp;(100&nbsp;times&nbsp;P)&nbsp;+&nbsp;1)  
+> &nbsp;&nbsp;pop&nbsp;&#8592;&nbsp;pop&nbsp;+&nbsp;immigrants  
+> &nbsp;&nbsp;record&nbsp;immigrants  
+> &nbsp;&nbsp;record&nbsp;pop  
+> &nbsp;&nbsp;--&nbsp;Check&nbsp;**for**&nbsp;plague  
+> &nbsp;&nbsp;plagued&nbsp;&#8592;&nbsp;0  
+> &nbsp;&nbsp;**if**&nbsp;15%&nbsp;chance  
+> &nbsp;&nbsp;&nbsp;&nbsp;plagued&nbsp;&#8592;&nbsp;ceil(pop&nbsp;/&nbsp;2)  
+> &nbsp;&nbsp;&nbsp;&nbsp;pop&nbsp;-=&nbsp;plagued  
+> &nbsp;&nbsp;record&nbsp;plagued  
+> &nbsp;&nbsp;--&nbsp;Update&nbsp;acreage  
+> &nbsp;&nbsp;lprice&nbsp;&#8592;&nbsp;randint(10)&nbsp;+&nbsp;17  
+> &nbsp;&nbsp;input&nbsp;purch  
+> &nbsp;&nbsp;lbushels&nbsp;&#8592;&nbsp;lprice&nbsp;times&nbsp;purch  
+> &nbsp;&nbsp;assert&nbsp;acreage&nbsp;&#8805;&nbsp;-purch&nbsp;&#8743;&nbsp;lbushels&nbsp;&#8804;&nbsp;stored  
+> &nbsp;&nbsp;acreage&nbsp;+=&nbsp;purch  
+> &nbsp;&nbsp;stored&nbsp;-=&nbsp;lbushels  
+> &nbsp;&nbsp;record&nbsp;lprice  
+> &nbsp;&nbsp;record&nbsp;purch  
+> &nbsp;&nbsp;record&nbsp;acreage  
+> &nbsp;&nbsp;--&nbsp;Feed&nbsp;people  
+> &nbsp;&nbsp;input&nbsp;feed  
+> &nbsp;&nbsp;assert&nbsp;feed&nbsp;&#8805;&nbsp;0&nbsp;&#8743;&nbsp;feed&nbsp;&#8804;&nbsp;stored  
+> &nbsp;&nbsp;stored&nbsp;-=&nbsp;feed  
+> &nbsp;&nbsp;record&nbsp;feed  
+> &nbsp;&nbsp;--&nbsp;Plant&nbsp;crops  
+> &nbsp;&nbsp;input&nbsp;plant  
+> &nbsp;&nbsp;assert&nbsp;plant&nbsp;&#8805;&nbsp;0  
+> &nbsp;&nbsp;assert&nbsp;floor(plant)&nbsp;&#8804;&nbsp;2&nbsp;times&nbsp;stored  
+> &nbsp;&nbsp;assert&nbsp;plant&nbsp;&#8804;&nbsp;10&nbsp;times&nbsp;pop  
+> &nbsp;&nbsp;stored&nbsp;-=&nbsp;floor(plant)  
+> &nbsp;&nbsp;record&nbsp;plant  
+> &nbsp;&nbsp;--&nbsp;Harvest&nbsp;crops  
+> &nbsp;&nbsp;yield&nbsp;&#8592;&nbsp;random&nbsp;1..5  
+> &nbsp;&nbsp;harvest&nbsp;&#8592;&nbsp;plant&nbsp;times&nbsp;yield  
+> &nbsp;&nbsp;record&nbsp;yield  
+> &nbsp;&nbsp;record&nbsp;harvest  
+> &nbsp;&nbsp;--&nbsp;Feed&nbsp;rats  
+> &nbsp;&nbsp;ratchance&nbsp;&#8592;&nbsp;random&nbsp;1..5  
+> &nbsp;&nbsp;eaten&nbsp;&#8592;&nbsp;0  
+> &nbsp;&nbsp;**if**&nbsp;ratchance&nbsp;is&nbsp;odd  
+> &nbsp;&nbsp;&nbsp;&nbsp;eaten&nbsp;&#8592;&nbsp;floor(stored&nbsp;/&nbsp;ratchance)  
+> &nbsp;&nbsp;stored&nbsp;-=&nbsp;eaten  
+> &nbsp;&nbsp;record&nbsp;eaten  
+> &nbsp;&nbsp;--&nbsp;Check&nbsp;**for**&nbsp;sufficiently&nbsp;fed  
+> &nbsp;&nbsp;dead&nbsp;&#8592;&nbsp;population&nbsp;-&nbsp;fed  
+> &nbsp;&nbsp;**if**&nbsp;dead&nbsp;&gt;&nbsp;45%&nbsp;of&nbsp;population  
+> &nbsp;&nbsp;&nbsp;&nbsp;failed&nbsp;&#8592;&nbsp;true  
+> &nbsp;&nbsp;record&nbsp;dead  
+> &nbsp;&nbsp;record&nbsp;stored  
+
+<!-- End of pseuf translation of <stdin> -->
