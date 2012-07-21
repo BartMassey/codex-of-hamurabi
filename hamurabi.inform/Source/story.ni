@@ -52,22 +52,21 @@ The gold clasp is part of the skirt. The description is "This clever wrought-gol
 
 The description of the chestplate is "This gold, bronze and iron chestplate is wrought with [depictions] of the glory of Hamurabi."
 
-Some things called depictions are part of the chestplate. The description is "Gilt and finely-wrought reliefs of battle and of judgment, of honor and of power." Understand "reliefs" as depictions.
+Some things called depictions are part of the chestplate. The description is "Gilt and finely-wrought reliefs of battle and of judgment, of honor and of power." Understand "reliefs" or "gilt reliefs" or "finely-wrought reliefs" as depictions.
 
-The description of the golden sandals is "Gold and leather, with high [laces] and precious ornamentation."
+The description of the golden sandals is "Gold and leather, with high [laces] and precious ornamentation." Understand "gold and leather sandals" as the golden sandals.
 
 A thing called laces is part of the golden sandals.
 
-The description of the crown is "Dotted with [precious stones], this golden crown rests easy on the head of the Great King." A head is a kind of thing. A head is part of every person. The description of the player's head is "Regal and aquiline." 
+The description of the golden crown is "Dotted with [precious stones], this golden crown rests easy on the head of the Great King." A head is a kind of thing. A head is part of every person. The description of the player's head is "Regal and aquiline." 
 
 Some precious stones are part of the crown. The description is "Beautiful, and glowing with all the colors of the rainbow. Who knows what distant land these radiant gems once decorated?"
 
 The description of the Rod is "This tall gold rod is capped with [a sparkling sapphire]. It is adorned with [mystic writing] and with [arcane symbols]."
 
+A sparkling sapphire is part of the Rod. The description is "This sapphire is the size of a [plover's egg], and sparkles like [a star in the night sky]." A plover's egg is a metaphor. It is part of the Rod. A star in the night sky is a metaphor. It is part of the Rod. Does the player mean doing something with a star in the night sky: it is unlikely.
 
-A sparkling sapphire is part of the Rod. The description is "This sapphire is the size of a [plover's egg], and sparkles like a [star] in the night sky." A plover's egg is a metaphor. It is part of the Rod. A star is a metaphor. It is part of the Rod.
-
-Some mystic writing is part of the Rod. The description is "The meaning is unclear, but the power of these runes is implicit. Let none brook the wrath of the great Hamurabi!"
+Some mystic writing is part of the Rod. The description is "The meaning is unclear, but the power of these runes is implicit. Let none brook the wrath of the great Hamurabi!" Understand "runes" as the mystic writing.
 
 Some arcane symbols are part of the Rod. The description is "The symbols tell the story of the greatness of Hamurabi, for those with the wit to read it."
 
