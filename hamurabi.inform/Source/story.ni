@@ -44,15 +44,18 @@ A thing called laces is part of the golden sandals.
 
 The description of the crown is "Dotted with [precious stones], this golden crown rests easy on the head of the Great king."
 
-Precious stones are part of the crown. The description is "Beautiful, and glowing with all the colors of the rainbow. Who knows what distant land these radiant gems once decorated?"
+Some precious stones are part of the crown. The description is "Beautiful, and glowing with all the colors of the rainbow. Who knows what distant land these radiant gems once decorated?"
 
 The description of the Rod is "This tall gold rod is capped with [a sparkling sapphire]. It is adorned with [mystic writing] and with [arcane symbols]."
 
-A sparkling sapphire is part of the Rod. The description is "This sapphire is the size of a plover's egg, and sparkles like a diamond in the night sky."
 
-Mystic writing is part of the Rod. The description is "The meaning is unclear, but the power of these runes is implicit. Let none brook the wrath of the great Hamurabi!"
+A metaphor is a kind of thing. It is fixed in place scenery. The description is usually "Even your Royal Highness should understand that [the item described] is just a metaphor."
 
-Arcane symbols are part of the Rod. The description is "The symbols tell the story of the greatness of Hamurabi, for those with the wit to read it."
+A sparkling sapphire is part of the Rod. The description is "This sapphire is the size of a [plover's egg], and sparkles like a [star] in the night sky." A plover's egg is a metaphor. It is part of the Rod. A star is a metaphor. It is part of the Rod.
+
+Some mystic writing is part of the Rod. The description is "The meaning is unclear, but the power of these runes is implicit. Let none brook the wrath of the great Hamurabi!"
+
+Some arcane symbols are part of the Rod. The description is "The symbols tell the story of the greatness of Hamurabi, for those with the wit to read it."
 
 Section - Moving
 
