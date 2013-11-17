@@ -129,7 +129,7 @@ The current year is a number variable. The current year is usually 10.
 
 Awaiting next season is a truth state that varies. Awaiting next season is usually false.
 
-Fall is a recurring scene. Fall begins when play begins. Fall begins when Spring ends. Fall ends when awaiting next season is true.
+Fall is a recurring scene. Fall begins when play begins. Fall begins when Spring ends. Fall ends when awaiting next season is true. When Fall begins when awaiting next season is true: say "[italic type]Ah, Fall. The time of harvest in the land. [Farmers] and their [slaves] bring in the bounty that feeds the [Kingdom].[roman type]"; now awaiting next season is false. Some farmers and some slaves and the kingdom are metaphorical phrases in the world.
 
 Spring is a recurring scene. Spring begins when Winter ends. Spring ends when awaiting next season is true.
 
