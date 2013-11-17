@@ -1,4 +1,5 @@
 "The Codex of Hamurabi" by "Bart Massey"
+[Copyright © 2012 Bart Massey]
 
 The story headline is "A socioeconomic simulation".
 
@@ -18,7 +19,7 @@ A metaphorical phrase is a kind of backdrop. The description is usually "[The it
 
 Section - The Throne Room
 
-The Throne Room is a room. "[if the player is on the Throne of Hamurabi]You sit upon the [Throne of Hamurabi], as is your right as King.[paragraph break][end if]Sandstone splendor stretches upward around you in this vast and echoing hall. Soft [linen carpets], rich [wood furniture], and gold accessories and [ornaments] adorn the richly [tiled stone floor]. Warm natural [sunlight] filters in through various [high windows], contrasting pleasantly with the dim, cool surroundings." The sandstone splendor is a metaphorical phrase in the Throne Room. Understand "accessories" or "gold accessories" as the gold ornaments. Understand "surroundings" as the Throne Room.
+The Throne Room is a room. "[if the player is on the Throne of Hamurabi]You sit upon the [Throne of Hamurabi], as is your right as King.[paragraph break][end if]Sandstone splendor stretches upward around you in this vast and echoing hall. Soft [linen carpets], rich [wood furniture], and gold accessories and ornaments adorn the richly [tiled stone floor]. Warm natural [sunlight] filters in through various [high windows], contrasting pleasantly with the dim, cool surroundings." The sandstone splendor is a metaphorical phrase in the Throne Room. Understand "accessories" or "gold accessories" as the gold ornaments. Understand "surroundings" as the Throne Room.
 
 Some throne room junk is a kind of thing. It is scenery. The description is usually "Very beautiful, and very appropriate to the space." Understand "space" as the Throne Room.
 
@@ -132,4 +133,4 @@ Fall is a recurring scene. Fall begins when play begins. Fall begins when Spring
 
 Spring is a recurring scene. Spring begins when Winter ends. Spring ends when awaiting next season is true.
 
-Winter is a recurring scene. Winter begins when Fall ends. Winter ends when awaiting next season is true.
+Winter is a recurring scene. Winter begins when Fall ends. Winter ends when awaiting next season is true. When Winter ends: increment the current year.
