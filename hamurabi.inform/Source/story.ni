@@ -65,7 +65,7 @@ Some precious stones are part of the crown. The description is "Beautiful, and g
 
 The description of the Rod is "This tall gold rod is capped with [a sparkling sapphire]. It is adorned with [mystic writing] and with [arcane symbols]."
 
-A sparkling sapphire is part of the Rod. The description is "This sapphire is the size of a [plover's egg], and sparkles like [a star in the night sky]." A plover's egg is a metaphor. It is part of the Rod. A star in the night sky is a metaphor. It is part of the Rod. Does the player mean doing something with a star in the night sky: it is unlikely.
+A sparkling sapphire is part of the Rod. The description is "This sapphire is the size of [a plover's egg], and sparkles like [a star] in the night sky." A plover's egg is a metaphor. It is part of the Rod. A star is a metaphor. It is part of the Rod.
 
 Some mystic writing is part of the Rod. The description is "The meaning is unclear, but the power of these runes is implicit. Let none brook the wrath of the great Hamurabi!" Understand "runes" as the mystic writing.
 
@@ -146,8 +146,7 @@ Some farmers and some slaves and the kingdom and his seed and the harvest and bo
 
 When a Governing Season ends:
 	if the current season is the last value of season name:
-		if the current year is less than 21:
-			increment the current year;
+		increment the current year;
 		now the current season is the first value of season name;
 	otherwise:
 		now the current season is the season name after the current season.

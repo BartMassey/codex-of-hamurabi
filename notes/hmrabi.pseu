@@ -45,7 +45,7 @@ To run a year of hmrabi:
   stored -= eaten
   record eaten
   -- Check for sufficiently fed
-  dead <- population - fed
+  dead <- population - feed
   if dead > 45% of population
     failed <- true
   record dead
