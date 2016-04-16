@@ -1,0 +1,229 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1348\cocoasubrtf170
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs24 \cf0 [Part 4 - Scene based game\
+\
+[Attempt to make game run as a series of scenes]\
+\
+Chapter 1 - Scene Helpers\
+\
+To decide if _endScene (_prompt - text):\
+	say "[_prompt]";\
+	if player consents:\
+		say "[paragraph break]";\
+		decide yes;\
+	otherwise:\
+		say "[line break]";\
+		decide no;\
+\
+Chapter 2 - Start of Game Scene\
+\
+_endStartOfGameScene is a truth state that varies.\
+Start of Game Scene is a scene.\
+Start of Game Scene begins when play begins.\
+Start of Game Scene ends when _endStartOfGameScene is true.\
+\
+When Start of Game Scene begins:\
+	now _endStartOfGameScene is false;\
+	\
+Every turn during Start of Game Scene:\
+	say "Start of Game Scene.";\
+	if _endScene "Should we proceed your majesty? (y/n) > [run paragraph on]":\
+		now _endStartOfGameScene is true;\
+\
+Chapter 3 - Start of Year Scene\
+\
+_endStartOfYearScene is a truth state that varies.\
+Start of Year Scene is a recurring scene.\
+Start of Year Scene begins when Start of Game Scene ends.\
+Start of Year Scene begins when End of Year Scene ends in continue.\
+Start of Year Scene ends when _endStartOfYearScene is true.\
+\
+When Start of Year Scene begins:\
+	say "Start of Year Scene.";\
+	now _endStartOfYearScene is false;\
+	_runAYear_Part0 currentParameter;\
+	_runAYear_Part1 currentParameter;\
+	if _endScene "Should we proceed your majesty? (y/n) > [run paragraph on]":\
+		now _endStartOfYearScene is true;\
+	\
+Every turn during Start of Year Scene:\
+	say "Start of Year Scene.";\
+	if _endScene "Should we proceed your majesty? (y/n) > [run paragraph on]":\
+		now _endStartOfYearScene is true;\
+\
+When Start of Year Scene ends:\
+	now _endStartOfYearScene is false;\
+\
+Chapter 4 - Purchase Land Scene\
+\
+_endPurchaseLandScene is a truth state that varies.\
+Purchase Land Scene is a recurring scene.\
+Purchase Land Scene begins when Start of Year Scene ends.\
+Purchase Land Scene ends when _endPurchaseLandScene is true.\
+\
+When Purchase Land Scene begins:\
+	say "Purchase Land Scene.";\
+	now _endPurchaseLandScene is false;\
+	_runAYear_Part2_A currentParameter;\
+	say "You must purchase land at [_landPrice of currentParameter] bushels of grain per acre. You have [_runningStored of currentParameter] bushels of grain. So the most you can purchase is [_runningStored of currentParameter / _landPrice of currentParameter].";\
+	\
+Every turn during Purchase Land Scene:\
+	say "Purchase Land Scene.";\
+	if _currentInputStatus of currentParameter is:\
+		-- PurchaseFail_NotEnoughLand: say "not enough land to sell.";\
+		-- PurchaseFail_NotEnoughGrain: say "not enough grain to buy.";\
+		-- PurchaseFail_TrySelling: say "try selling acreage instead of buying negative acreage.";\
+		-- PurchaseFail_TryBuying: say "try buying acreage instead of selling negative acreage.";\
+		-- PurchaseSuccess: now _endPurchaseLandScene is true;\
+	if _endPurchaseLandScene is false:\
+		say "You must purchase land at [_landPrice of currentParameter] bushels of grain per acre. You have [_runningStored of currentParameter] bushels of grain. So the most you can purchase is [_runningStored of currentParameter / _landPrice of currentParameter].";\
+\
+When Purchase Land Scene ends:\
+	_runAYear_Part2_B currentParameter;\
+	now _currentInputStatus of currentParameter is NoStatus;\
+	now _endPurchaseLandScene is false;\
+\
+Chapter 5 - Feed People Scene\
+\
+_endFeedPeopleScene is a truth state that varies.\
+Feed People Scene is a recurring scene.\
+Feed People Scene begins when Purchase Land Scene ends.\
+Feed People Scene ends when _endFeedPeopleScene is true.\
+\
+When Feed People Scene begins:\
+	say "Feed People Scene.";\
+	now _endFeedPeopleScene is false;\
+	_runAYear_Part2_A currentParameter;\
+	say "You must feed the [_runningPopulation of currentParameter] subjects with [_runningStored of currentParameter] bushels of grain.";\
+	\
+Every turn during Feed People Scene:\
+	say "Feed People Scene.";\
+	if _currentInputStatus of currentParameter is:\
+		-- FeedFail_MustFeedPeople: say "you must give people some grain.";\
+		-- FeedFail_NotEnoughGrain: say "not enough grain to feed them that much.";\
+		-- FeedSuccess: now _endFeedPeopleScene is true;\
+	if _endFeedPeopleScene is false:\
+		say "You must feed the [_runningPopulation of currentParameter] subjects with [_runningStored of currentParameter] bushels of grain.";\
+\
+When Feed People Scene ends:\
+	_runAYear_Part3 currentParameter;\
+	now _currentInputStatus of currentParameter is NoStatus;\
+	now _endFeedPeopleScene is false;\
+\
+Chapter 6 - Plant Grain Scene\
+\
+_endPlantGrainScene is a truth state that varies.\
+Plant Grain Scene is a recurring scene.\
+Plant Grain Scene begins when Feed People Scene ends.\
+Plant Grain Scene ends when _endPlantGrainScene is true.\
+\
+When Plant Grain Scene begins:\
+	say "Plant Grain Scene.";\
+	now _endFeedPeopleScene is false;\
+	say "You must plant. You have [_runningAcreage of currentParameter] acres. You have enough grain to plant [2 * _runningStored of currentParameter] acres. And enough subjects to plant [10 *  _runningPopulation of currentParameter] acres.";\
+	\
+Every turn during Plant Grain Scene:\
+	say "Plant Grain Scene.";\
+	if _currentInputStatus of currentParameter is:\
+		-- PlantFail_MustPlantSomething: say "you must plant something.";\
+		-- PlantFail_NotEnoughGrain: say "not enough grain to plant that much.";\
+		-- PlantFail_NotEnoughPeople: say "not enough people to plant that much.";\
+		-- PlantSuccess: now _endPlantGrainScene is true;\
+	if _endPlantGrainScene is false:\
+		say "You must plant. You have [_runningAcreage of currentParameter] acres. You have enough grain to plant [2 * _runningStored of currentParameter] acres. And enough subjects to plant [10 *  _runningPopulation of currentParameter] acres.";\
+\
+When Plant Grain Scene ends:\
+	_runAYear_Part4 currentParameter;\
+	now _currentInputStatus of currentParameter is NoStatus;\
+	now _endPlantGrainScene is false;\
+\
+Chapter 7 - End of Year Scene\
+\
+_endEndOfYearScene is a truth state that varies.\
+End of Year Scene is a recurring scene.\
+End of Year Scene begins when Plant Grain Scene ends.\
+End of Year Scene ends when _endEndOfYearScene is true.\
+\
+When End of Year Scene begins:\
+	say "End of Year Scene.";\
+	now _endEndOfYearScene is false;\
+	say "Here is your report.";\
+	_reportFullStatus;\
+\
+To decide if _endOfYearFailure:\
+	if _runningPopulation of currentParameter < _minimumPopulation of currentParameter:\
+		decide yes;\
+	decide no.\
+To decide if _endOfYearContinue:\
+	if _yearsToPlay of currentParameter >= 0:\
+		decide yes;\
+	decide no.\
+To decide if _endOfYearSuccess:\
+	if _runningPopulation of currentParameter >= _minimumPopulation of currentParameter:\
+		if _yearsToPlay of currentParameter < 0:\
+			decide yes;\
+	decide no.\
+	\
+End of Year Scene ends in failure when _endOfYearFailure.\
+End of Year Scene ends in continue when _endOfYearContinue.\
+End of Year Scene ends in success when _endOfYearSuccess.\
+	\
+Every turn during End of Year Scene:\
+	say "End of Year Scene.";\
+	if _endScene "Should we proceed your majesty? (y/n) > [run paragraph on]":\
+		now _endEndOfYearScene is true;\
+\
+When End of Year Scene ends:\
+	now _endEndOfYearScene is false;\
+\
+Chapter 8 - End of Game Loser Scene\
+\
+_endOfGameLoserScene is a truth state that varies.\
+End of Game Loser Scene is a scene.\
+End of Game Loser Scene begins when End of Year scene ends in failure.\
+\
+When End of Game Loser Scene begins:\
+	say "End of Game Loser Scene.";\
+	now _endOfGameLoserScene is false;\
+	say "Loser Loser Loser.";\
+	if _endScene "Should we quit your majesty? (y/n) > [run paragraph on]":\
+		now _endOfGameLoserScene is true;\
+\
+Every turn during End of Game Loser Scene:\
+	say "End of Game Loser Scene.";\
+	if _endScene "Should we quit your majesty? (y/n) > [run paragraph on]":\
+		now _endOfGameLoserScene is true;\
+\
+When End of Game Loser Scene ends:\
+	now _endOfGameLoserScene is false;\
+	end the story finally.\
+\
+Chapter 9 - End of Game Winner Scene\
+\
+_endOfGameWinnerScene is a truth state that varies.\
+End of Game Winner Scene is a scene.\
+End of Game Winner Scene begins when End of Year scene ends in success.\
+\
+When End of Game Winner Scene begins:\
+	say "End of Game Winner Scene.";\
+	now _endOfGameWinnerScene is false;\
+	say "Winner Winner Winner.";\
+	if _endScene "Should we quit your majesty? (y/n) > [run paragraph on]":\
+		now _endOfGameWinnerScene is true;\
+	\
+Every turn during End of Game Winner Scene:\
+	say "End of Game Winner Scene.";\
+	if _endScene "Should we quit your majesty? (y/n) > [run paragraph on]":\
+		now _endOfGameWinnerScene is true;\
+\
+When End of Game Winner Scene ends:\
+	now _endOfGameWinnerScene is false;\
+	end the story finally.\
+\
+Chapter 10 - End of Scenes]\
+\
+}
